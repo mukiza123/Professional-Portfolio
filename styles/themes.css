@@ -1,0 +1,150 @@
+/* ==========================================
+   Dark Theme
+   ========================================== */
+
+[data-theme="dark"] {
+  /* Dark Mode Colors */
+  --color-bg: #0A0A0A;
+  --color-bg-secondary: #1A1A1A;
+  --color-text-primary: #F9FAFB;
+  --color-text-secondary: #D1D5DB;
+  --color-text-muted: #9CA3AF;
+  --color-border: #2D2D2D;
+  
+  --color-grey-50: #1F2937;
+  --color-grey-100: #1F2937;
+  --color-grey-200: #374151;
+  
+  /* Adjust shadows for dark mode */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.6);
+}
+
+/* Theme Toggle Icon States */
+[data-theme="dark"] .theme-toggle__icon .sun {
+  display: none;
+}
+
+[data-theme="dark"] .theme-toggle__icon .moon {
+  display: block;
+}
+
+/* Dark Mode Specific Component Adjustments */
+[data-theme="dark"] .hero {
+  background: linear-gradient(135deg, var(--color-bg) 0%, var(--color-bg-secondary) 100%);
+}
+
+[data-theme="dark"] .hero__title {
+  background: linear-gradient(135deg, var(--color-text-primary) 0%, #1a7253 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+[data-theme="dark"] .hero__image-frame {
+  border-color: var(--color-bg);
+  background-color: var(--color-grey-200);
+}
+
+[data-theme="dark"] .hero__image-bg {
+  background: linear-gradient(135deg, var(--color-primary) 0%, rgba(13, 99, 70, 0.8) 100%);
+}
+
+[data-theme="dark"] .mission-box {
+  background-color: var(--color-bg);
+  border-left-color: var(--color-primary);
+}
+
+[data-theme="dark"] .skill-card {
+  background-color: var(--color-bg);
+  border-color: var(--color-border);
+}
+
+[data-theme="dark"] .skill-card:hover {
+  background-color: var(--color-bg-secondary);
+  border-color: var(--color-primary);
+}
+
+[data-theme="dark"] .project-card,
+[data-theme="dark"] .project-item {
+  background-color: var(--color-bg);
+  border-color: var(--color-border);
+}
+
+[data-theme="dark"] .project-card:hover,
+[data-theme="dark"] .project-item:hover {
+  background-color: var(--color-bg-secondary);
+  border-color: var(--color-primary);
+}
+
+[data-theme="dark"] .featured-project {
+  background: linear-gradient(135deg, var(--color-bg-secondary) 0%, var(--color-bg) 100%);
+  border-color: var(--color-border);
+}
+
+[data-theme="dark"] .profile-card {
+  background-color: var(--color-bg);
+  border-color: var(--color-border);
+}
+
+[data-theme="dark"] .profile-card__image-container {
+  background-color: var(--color-grey-200);
+}
+
+[data-theme="dark"] .about__image-placeholder {
+  background: linear-gradient(135deg, #2D2D2D 0%, #1A1A1A 100%);
+}
+
+[data-theme="dark"] .contact-card {
+  background-color: var(--color-bg);
+  border-color: var(--color-border);
+}
+
+[data-theme="dark"] .contact-card:hover {
+  background-color: var(--color-bg-secondary);
+  border-color: var(--color-primary);
+}
+
+[data-theme="dark"] .timeline::before {
+  background-color: var(--color-border);
+}
+
+[data-theme="dark"] .timeline-item__marker {
+  border-color: var(--color-bg);
+}
+
+[data-theme="dark"] .nav {
+  background-color: var(--color-bg);
+  border-bottom-color: var(--color-border);
+}
+
+[data-theme="dark"] .footer {
+  background-color: var(--color-bg-secondary);
+  border-top-color: var(--color-border);
+}
+
+[data-theme="dark"] .contact-footer {
+  border-top-color: var(--color-border);
+}
+
+/* Smooth Transitions for Theme Switch */
+body,
+.nav,
+.hero,
+.page,
+.skill-card,
+.project-card,
+.project-item,
+.featured-project,
+.mission-box,
+.profile-card,
+.contact-card,
+.btn,
+h1, h2, h3, h4, h5, h6,
+p, a, span {
+  transition: background-color var(--transition-base), 
+              color var(--transition-base), 
+              border-color var(--transition-base);
+}

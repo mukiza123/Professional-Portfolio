@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact | Lisette Mukiza</title>
+
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/themes.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+<nav class="nav">
+    <div class="nav__container">
+        <a href="index.html" class="nav__logo" aria-label="Home">
+            <svg width="64" height="32" viewBox="-32 -16 64 32" xmlns="http://www.w3.org/2000/svg">
+                <path
+                    d="M -24 0 C -24 -10 -8 -10 0 0 C 8 10 24 10 24 0 C 24 -10 8 -10 0 0 C -8 10 -24 10 -24 0"
+                    fill="none"
+                    stroke="#0d6346"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                />
+            </svg>
+        </a>
+
+        <div class="nav__links">
+            <a href="index.html" class="nav__link">Home</a>
+            <a href="about.html" class="nav__link">About</a>
+            <a href="skills.html" class="nav__link">Skills</a>
+            <a href="projects.html" class="nav__link">Projects</a>
+            <a href="contact.html" class="nav__link nav__link--active" aria-current="page">Contact</a>
+
+            <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+                <svg class="theme-toggle__icon" width="20" height="20" viewBox="0 0 20 20">
+                    <g class="sun">
+                        <circle cx="10" cy="10" r="3" stroke="currentColor" stroke-width="2" fill="none"/>
+                        <line x1="10" y1="1" x2="10" y2="3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        <line x1="10" y1="17" x2="10" y2="19" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        <line x1="17" y1="10" x2="19" y2="10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        <line x1="1" y1="10" x2="3" y2="10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    </g>
+                    <path class="moon"
+                          d="M17 10.5C17 14.366 13.866 17.5 10 17.5C6.134 17.5 3 14.366 3 10.5C3 7.5 5 5 8 4C7 6 7 8 9 10C11 12 13 12 15 11C16 13.5 17 9 17 10.5Z"
+                          fill="currentColor"/>
+                </svg>
+            </button>
+        </div>
+    </div>
+</nav>
+
+<main class="page">
+    <div class="page__container">
+        <div class="contact-content">
+
+            <div class="contact-intro">
+                <h1 class="page__title">Let’s Connect</h1>
+                <p class="contact-intro__text">
+                    Open to discussions around systems engineering, infrastructure projects,
+                    and opportunities to build meaningful software. Whether it’s a technical
+                    question, collaboration, or a professional connection, I’m open to it.
+                </p>
+            </div>
+
+            <div class="contact-grid">
+
+                <a href="mailto:mukizalisette@gmail.com" class="contact-card">
+                    <div class="contact-card__icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
+                            <rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="2"/>
+                            <path d="M3 7L12 13L21 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                    <h2 class="contact-card__title">Email</h2>
+                    <p class="contact-card__detail">mukizalisette@gmail.com</p>
+                    <span class="contact-card__action">Send a message →</span>
+                </a>
+
+                <a href="https://github.com/lisette-lachiever" class="contact-card" target="_blank" rel="noopener">
+                    <div class="contact-card__icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
+                            <path d="M12 2C6.477 2 2 6.477 2 12C2 16.418 4.865 20.166 8.839 21.489C9.339 21.579 9.521 21.267 9.521 21C9.521 20.766 9.513 20.15 9.508 19.326C6.726 19.933 6.139 18.002 6.139 18.002C5.685 16.846 5.029 16.535 5.029 16.535C4.121 15.913 5.098 15.925 5.098 15.925C6.101 15.997 6.629 16.961 6.629 16.961C7.521 18.508 8.97 18.067 9.539 17.811C9.631 17.163 9.889 16.722 10.175 16.472C7.955 16.222 5.62 15.362 5.62 11.511C5.62 10.415 6.01 9.52 6.649 8.816C6.546 8.563 6.203 7.543 6.747 6.162C6.747 6.162 7.586 5.891 9.497 7.188C10.31 6.968 11.16 6.858 12.01 6.854C12.86 6.858 13.71 6.968 14.524 7.188C16.434 5.891 17.272 6.162 17.272 6.162C17.817 7.543 17.474 8.563 17.371 8.816C18.011 9.52 18.399 10.415 18.399 11.511C18.399 15.372 16.06 16.218 13.833 16.465C14.192 16.779 14.512 17.396 14.512 18.338C14.512 19.694 14.501 20.786 14.501 21C14.501 21.269 14.681 21.584 15.188 21.488C19.165 20.163 22 16.417 22 12C22 6.477 17.523 2 12 2Z"
+                                  fill="currentColor"/>
+                        </svg>
+                    </div>
+                    <h2 class="contact-card__title">GitHub</h2>
+                    <p class="contact-card__detail">@lisette-lachiever</p>
+                    <span class="contact-card__action">View projects →</span>
+                </a>
+
+                <a href="https://www.linkedin.com/in/lisette-mukiza/" class="contact-card" target="_blank" rel="noopener">
+                    <div class="contact-card__icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
+                            <rect x="2" y="2" width="20" height="20" rx="2" stroke="currentColor" stroke-width="2"/>
+                            <path d="M8 11V16M8 8V8.01M12 16V11M16 16V13C16 11.8954 15.1046 11 14 11C12.8954 11 12 11.8954 12 13"
+                                  stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                    <h2 class="contact-card__title">LinkedIn</h2>
+                    <p class="contact-card__detail">lisette-mukiza</p>
+                    <span class="contact-card__action">Connect professionally →</span>
+                </a>
+
+                <a href="assets/Lisette_Mukiza_CV.pdf" class="contact-card" download>
+                    <div class="contact-card__icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
+                            <path d="M14 2H6C4.89543 2 4 2.89543 4 4V20C4 21.1046 4.89543 22 6 22H18C19.1046 22 20 21.1046 20 20V8L14 2Z"
+                                  stroke="currentColor" stroke-width="2"/>
+                            <path d="M14 2V8H20" stroke="currentColor" stroke-width="2"/>
+                            <path d="M12 18V12M12 12L10 14M12 12L14 14"
+                                  stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                    <h2 class="contact-card__title">Resume</h2>
+                    <p class="contact-card__detail">PDF Download</p>
+                    <span class="contact-card__action">Download resume →</span>
+                </a>
+
+            </div>
+
+            <div class="contact-footer">
+                <p>Based in <strong>Pamplemousses, Mauritius</strong></p>
+                <p>Available for internships and collaborative projects</p>
+            </div>
+
+        </div>
+    </div>
+</main>
+
+<footer class="footer">
+    <div class="footer__container">
+        <svg width="64" height="32" viewBox="-32 -16 64 32" xmlns="http://www.w3.org/2000/svg">
+            <path
+                d="M -24 0 C -24 -10 -8 -10 0 0 C 8 10 24 10 24 0 C 24 -10 8 -10 0 0 C -8 10 -24 10 -24 0"
+                fill="none"
+                stroke="#0d6346"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+            />
+        </svg>
+        <p class="footer__text">Learning to build systems that scale and serve.</p>
+    </div>
+</footer>
+
+<script src="scripts/main.js"></script>
+<script src="scripts/theme-toggle.js"></script>
+</body>
+</html>
