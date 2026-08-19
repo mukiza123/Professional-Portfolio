@@ -1477,8 +1477,13 @@ h1, h2, h3, h4 {
 }
 
 .work {
-  display: flex;
-  flex-direction: column;
+  /* Grid, not flex: as flex items the media panel could absorb or give up
+     height depending on how long the body text was, which pushed the action
+     row to a different offset on every card. Two explicit rows - media at its
+     own height, body taking everything left - make the geometry identical
+     across cards no matter how much copy each one carries. */
+  display: grid;
+  grid-template-rows: auto 1fr;
   overflow: hidden;
   border-radius: var(--r-lg);
   background-color: var(--ground);
@@ -1489,18 +1494,16 @@ h1, h2, h3, h4 {
 /* The featured item runs the full width with the media beside the text. */
 .work--featured {
   grid-column: 1 / -1;
-  flex-direction: row;
-  align-items: stretch;
+  grid-template-rows: 1fr;
+  grid-template-columns: 42% 1fr;
 }
 
-.work--featured .work__media {
-  flex: 0 0 42%;
-  aspect-ratio: auto;
-}
+.work--featured .work__media { aspect-ratio: auto; }
 
 .work__media {
   position: relative;
   aspect-ratio: 16 / 10;
+  min-height: 0;
   overflow: hidden;
   background-color: var(--ground);
   box-shadow: var(--sink-sm);
@@ -1544,7 +1547,6 @@ h1, h2, h3, h4 {
 .work__body {
   display: flex;
   flex-direction: column;
-  flex: 1;
   padding: var(--s-lg);
 }
 
@@ -1975,12 +1977,12 @@ h1, h2, h3, h4 {
 @media (max-width: 900px) {
   /* The featured card stops being side-by-side well before the grid does,
      because its 42% media column starves the text of measure first. */
-  .work--featured { flex-direction: column; }
-
-  .work--featured .work__media {
-    flex: none;
-    aspect-ratio: 16 / 10;
+  .work--featured {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr;
   }
+
+  .work--featured .work__media { aspect-ratio: 16 / 10; }
 
   /* Inside the collapsed menu the switcher is a full-width row of its own. */
   .nav__links .lang {
