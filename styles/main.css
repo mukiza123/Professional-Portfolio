@@ -1318,6 +1318,9 @@ h1, h2, h3, h4 {
 }
 
 .tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.42rem;
   padding: 0.35rem 0.85rem;
   border-radius: var(--r-pill);
   background-color: var(--ground);
@@ -1325,6 +1328,68 @@ h1, h2, h3, h4 {
   font-size: 0.8125rem;
   font-weight: var(--w-semi);
   color: var(--ink-soft);
+}
+
+/* --- Tags that carry a logo ------------------------------------------------
+   Used on the skills page. The tilt is a real 3D rotation with a light sweep
+   passing over it, so the chip reads as a physical surface catching the light
+   rather than just changing colour. */
+
+.tag--logo {
+  position: relative;
+  overflow: hidden;
+  padding: 0.4rem 0.9rem 0.4rem 0.5rem;
+  transform: perspective(500px) rotateX(0deg) rotateY(0deg);
+  transform-style: preserve-3d;
+  will-change: transform;
+  transition: transform var(--t-base), background-color var(--t-base),
+              color var(--t-base), box-shadow var(--t-base);
+}
+
+.tag__icon {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  transition: transform var(--t-base);
+}
+
+.tag--logo:hover,
+.tag--logo:focus-visible {
+  background-color: var(--accent);
+  color: var(--ink);
+  box-shadow: var(--lift-md);
+  transform: perspective(500px) rotateX(-12deg) rotateY(8deg) translateY(-3px);
+}
+
+.tag--logo:hover .tag__icon { transform: scale(1.12) rotate(-6deg); }
+
+/* The sweep. Sits above the chip, ignores the pointer, and is clipped by the
+   chip's own overflow so it reads as a reflection travelling across it. */
+.tag--logo::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: linear-gradient(115deg,
+    transparent 32%,
+    rgba(255, 255, 255, .62) 48%,
+    transparent 64%);
+  transform: translateX(-130%);
+  transition: transform .6s cubic-bezier(.25, .8, .3, 1);
+}
+
+.tag--logo:hover::after,
+.tag--logo:focus-visible::after { transform: translateX(130%); }
+
+/* Touch devices fire :hover on tap and keep it, so the effect is pointer-only. */
+@media (hover: none) {
+  .tag--logo:hover {
+    background-color: var(--ground);
+    color: var(--ink-soft);
+    box-shadow: var(--sink-sm);
+    transform: none;
+  }
+  .tag--logo:hover::after { transform: translateX(-130%); }
 }
 
 /* --- Inline action link ---------------------------------------------------- */
@@ -1498,7 +1563,13 @@ h1, h2, h3, h4 {
   grid-template-columns: 42% 1fr;
 }
 
-.work--featured .work__media { aspect-ratio: auto; }
+/* The featured card is taller than its media column is wide, so letting the
+   media stretch would crop the shot. It keeps the same 16:10 as every other
+   card and centres in the column instead. */
+.work--featured .work__media {
+  aspect-ratio: 16 / 10;
+  align-self: center;
+}
 
 .work__media {
   position: relative;
