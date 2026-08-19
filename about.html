@@ -1,219 +1,253 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>About | Lisette</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="How Lisette Mukiza approaches software engineering, and the mission behind the work.">
+<title>About | Lisette Mukiza</title>
 
-    <link rel="stylesheet" href="styles/main.css" />
-    <link rel="stylesheet" href="styles/themes.css" />
+<script>
+/* Paint the stored theme before the first frame so the ground colour never
+   flashes from light to dark on load. */
+(function () {
+  try {
+    var stored = localStorage.getItem('theme');
+    if (!stored) {
+      stored = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    }
+    document.documentElement.setAttribute('data-theme', stored);
+  } catch (error) {
+    document.documentElement.setAttribute('data-theme', 'light');
+  }
+})();
+</script>
 
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
-        rel="stylesheet"
-    />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400..900&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="styles/main.css">
+<link rel="stylesheet" href="styles/themes.css">
 </head>
 
 <body>
-    <nav class="nav">
-        <div class="nav__container">
-            <a href="index.html" class="nav__logo">
-                <svg
-                    width="64"
-                    height="32"
-                    viewBox="-32 -16 64 32"
-                    xmlns="http://www.w3.org/2000/svg"
-                >
-                    <path
-                        d="
-                            M -24 0
-                            C -24 -10 -8 -10 0 0
-                            C 8 10 24 10 24 0
-                            C 24 -10 8 -10 0 0
-                            C -8 10 -24 10 -24 0
-                        "
-                        fill="none"
-                        stroke="#0d6346"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                    />
+<a class="skip-link" href="#main" data-i18n="skip">Skip to content</a>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <defs>
+        <path id="i-github" d="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.2.8-.6v-2c-3.2.7-3.9-1.5-3.9-1.5-.5-1.4-1.3-1.7-1.3-1.7-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.7 1.3 3.4 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.2 1.2a11 11 0 0 1 5.8 0c2.2-1.5 3.2-1.2 3.2-1.2.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.3c0 .4.2.7.8.6 4.6-1.5 7.9-5.8 7.9-10.9C23.5 5.7 18.3.5 12 .5z"/>
+        <path id="i-linkedin" d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM10 9h3.8v1.7h.1c.5-1 1.8-2 3.7-2 4 0 4.7 2.5 4.7 5.8V21h-4v-5.6c0-1.4 0-3.1-1.9-3.1s-2.2 1.5-2.2 3V21h-4z"/>
+        <g id="i-mail"><rect x="2.6" y="4.8" width="18.8" height="14.4" rx="2.2"/><path d="m3.4 6.6 8.6 6 8.6-6"/></g>
+        <g id="i-globe"><circle cx="12" cy="12" r="9.2"/><path d="M2.8 12h18.4M12 2.8c2.4 2.6 3.6 5.7 3.6 9.2s-1.2 6.6-3.6 9.2c-2.4-2.6-3.6-5.7-3.6-9.2S9.6 5.4 12 2.8z"/></g>
+        <path id="i-arrow-out" d="M7 17 17 7M8.5 7H17v8.5"/>
+    </defs>
+</svg>
+
+<nav class="nav">
+    <div class="nav__container">
+        <a href="index.html" class="nav__logo" aria-label="Lisette Mukiza, home"></a>
+
+        <div class="nav__links" id="navLinks">
+            <a href="index.html" class="nav__link" data-nav="home" data-i18n="nav.home">Home</a>
+            <a href="about.html" class="nav__link nav__link--active" data-nav="about" data-i18n="nav.about" aria-current="page">About</a>
+            <a href="skills.html" class="nav__link" data-nav="skills" data-i18n="nav.skills">Skills</a>
+            <a href="projects.html" class="nav__link" data-nav="projects" data-i18n="nav.projects">Projects</a>
+            <a href="contact.html" class="nav__cta" data-nav="contact" data-i18n="nav.contact">Contact</a>
+        </div>
+
+        <div class="nav__actions">
+            <button class="theme-toggle" id="themeToggle" type="button" data-i18n-aria="theme.toDark" aria-label="Switch to dark theme" aria-pressed="false">
+                <svg class="theme-toggle__icon" width="20" height="20" viewBox="0 0 20 20" aria-hidden="true">
+                    <g class="sun" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+                        <circle cx="10" cy="10" r="3.4"/>
+                        <path d="M10 1.6v2M10 16.4v2M18.4 10h-2M3.6 10h-2M15.9 4.1l-1.4 1.4M5.5 14.5l-1.4 1.4M15.9 15.9l-1.4-1.4M5.5 5.5 4.1 4.1"/>
+                    </g>
+                    <path class="moon" d="M17.2 12.6A7.4 7.4 0 0 1 7.4 2.8a7.4 7.4 0 1 0 9.8 9.8z" fill="currentColor"/>
                 </svg>
-            </a>
+            </button>
 
-            <div class="nav__links">
-                <a href="index.html" class="nav__link">Home</a>
-                <a href="about.html" class="nav__link nav__link--active">About</a>
-                <a href="skills.html" class="nav__link">Skills</a>
-                <a href="projects.html" class="nav__link">Projects</a>
-                <a href="contact.html" class="nav__link">Contact</a>
 
-                <button
-                    class="theme-toggle"
-                    id="themeToggle"
-                    aria-label="Toggle dark mode"
-                >
-                    <svg
-                        class="theme-toggle__icon"
-                        width="20"
-                        height="20"
-                        viewBox="0 0 20 20"
-                    >
-                        <g class="sun">
-                            <circle
-                                cx="10"
-                                cy="10"
-                                r="3"
-                                stroke="currentColor"
-                                stroke-width="2"
-                                fill="none"
-                            />
-                            <line
-                                x1="10"
-                                y1="1"
-                                x2="10"
-                                y2="3"
-                                stroke="currentColor"
-                                stroke-width="2"
-                                stroke-linecap="round"
-                            />
-                            <line
-                                x1="10"
-                                y1="17"
-                                x2="10"
-                                y2="19"
-                                stroke="currentColor"
-                                stroke-width="2"
-                                stroke-linecap="round"
-                            />
-                            <line
-                                x1="17"
-                                y1="10"
-                                x2="19"
-                                y2="10"
-                                stroke="currentColor"
-                                stroke-width="2"
-                                stroke-linecap="round"
-                            />
-                            <line
-                                x1="1"
-                                y1="10"
-                                x2="3"
-                                y2="10"
-                                stroke="currentColor"
-                                stroke-width="2"
-                                stroke-linecap="round"
-                            />
-                        </g>
+            <div class="lang" role="group" aria-label="Language">
+                <button class="lang__btn" type="button" data-lang="en" aria-pressed="true">EN</button>
+                <button class="lang__btn" type="button" data-lang="fr" aria-pressed="false">FR</button>
+                <button class="lang__btn" type="button" data-lang="rw" aria-pressed="false">RW</button>
+            </div>
 
-                        <path
-                            class="moon"
-                            d="M17 10.5C17 14.366 13.866 17.5 10 17.5C6.134 17.5 3 14.366 3 10.5C3 7.5 5 5 8 4C7 6 7 8 9 10C11 12 13 12 15 11C16 13.5 17 9 17 10.5Z"
-                            fill="currentColor"
-                            stroke="none"
-                        />
+            <button class="nav__burger" id="navBurger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </div>
+</nav>
+
+<main class="page" id="main">
+    <div class="page__container">
+
+        <section class="intro">
+            <div class="intro__portrait">
+                <img src="assets/images/portrait-about.webp" alt="Lisette Mukiza" width="771" height="860">
+
+                <span class="intro__mark intro__mark--brace" aria-hidden="true">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M9.5 3.5c-2 0-2.5 1.2-2.5 3v2c0 1.6-.9 2.9-2.5 3.5 1.6.6 2.5 1.9 2.5 3.5v2c0 1.8.5 3 2.5 3M14.5 3.5c2 0 2.5 1.2 2.5 3v2c0 1.6.9 2.9 2.5 3.5-1.6.6-2.5 1.9-2.5 3.5v2c0 1.8-.5 3-2.5 3"/>
                     </svg>
-                </button>
+                </span>
+
+                <span class="intro__mark intro__mark--arrow" aria-hidden="true">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M17 7 7 17M16.5 15.5V7.5H8.5"/>
+                    </svg>
+                </span>
+
+                <span class="intro__mark intro__mark--terminal" aria-hidden="true">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="2.5" y="4" width="19" height="16" rx="2"/>
+                        <path d="M6.5 9.5 9.5 12l-3 2.5M12.5 15h5"/>
+                    </svg>
+                </span>
+            </div>
+
+            <div class="intro__body">
+                <span class="pill-badge" data-i18n="about.badge">About me</span>
+
+                <h1 class="intro__title">
+                    <span data-i18n="about.leadIn">I&rsquo;m a</span>
+                    <span class="chip" data-i18n="about.chip">Software</span>
+                    <span data-i18n="about.leadOut">Engineer building systems that serve.</span>
+                </h1>
+
+                <p class="intro__text" data-i18n="about.intro">
+                    I am a software engineering student at African Leadership College of Higher
+                    Education. I learn by building real systems, from intranet setups and
+                    Linux-based services through to backend applications and accessible software
+                    products.
+                </p>
+
+                <ul class="stack">
+                    <li class="stack__item" style="--pct: 60%" data-reveal>
+                        <span class="stack__icon">
+                            <svg width="28" height="28" viewBox="0 0 24 24" aria-hidden="true">
+                                <path fill="#3776AB" d="M11.9 2c-2.4 0-4.2.5-4.2 2.5v2.2h4.4v.6H5.9C3.7 7.3 2.2 8.6 2.2 11.6s1.4 4.3 3.5 4.3h1.6v-2.7c0-2.3 2-4.2 4.3-4.2h4.3c1.8 0 3.2-1.5 3.2-3.3V4.5C19.1 2.7 17.5 2 15.7 2h-3.8zm-2.4 1.4c.5 0 .9.4.9.9s-.4.9-.9.9-.9-.4-.9-.9.4-.9.9-.9z"/>
+                                <path fill="#FFD43B" d="M12.1 22c2.4 0 4.2-.5 4.2-2.5v-2.2h-4.4v-.6h5.9c2.2 0 3.7-1.3 3.7-4.3s-1.4-4.3-3.5-4.3h-1.6v2.7c0 2.3-2 4.2-4.3 4.2H7.8c-1.8 0-3.2 1.5-3.2 3.3v2.2C4.9 21.3 6.5 22 8.3 22h3.8zm2.4-1.4c-.5 0-.9-.4-.9-.9s.4-.9.9-.9.9.4.9.9-.4.9-.9.9z"/>
+                            </svg>
+                        </span>
+                        <span class="stack__name">Python</span>
+                        <span class="stack__pct">60%</span>
+                        <span class="stack__bar" aria-hidden="true"><i></i></span>
+                    </li>
+
+                    <li class="stack__item" style="--pct: 80%" data-reveal>
+                        <span class="stack__icon">
+                            <svg width="26" height="26" viewBox="0 0 24 24" aria-hidden="true">
+                                <rect width="24" height="24" rx="3" fill="#F7DF1E"/>
+                                <text x="21" y="19.5" text-anchor="end" font-family="Manrope, Segoe UI, sans-serif" font-weight="800" font-size="10.5" fill="#101215">JS</text>
+                            </svg>
+                        </span>
+                        <span class="stack__name">JavaScript</span>
+                        <span class="stack__pct">80%</span>
+                        <span class="stack__bar" aria-hidden="true"><i></i></span>
+                    </li>
+
+                    <li class="stack__item" style="--pct: 78%" data-reveal>
+                        <span class="stack__icon">
+                            <svg width="27" height="27" viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="M4.5 6v12c0 1.66 3.36 3 7.5 3s7.5-1.34 7.5-3V6z" fill="#00758F"/>
+                                <ellipse cx="12" cy="6" rx="7.5" ry="3" fill="#0A93AF"/>
+                                <path d="M4.5 12c0 1.66 3.36 3 7.5 3s7.5-1.34 7.5-3" stroke="#F29111" stroke-width="1.5" fill="none"/>
+                            </svg>
+                        </span>
+                        <span class="stack__name">MySQL</span>
+                        <span class="stack__pct">78%</span>
+                        <span class="stack__bar" aria-hidden="true"><i></i></span>
+                    </li>
+
+                    <li class="stack__item" style="--pct: 85%" data-reveal>
+                        <span class="stack__icon">
+                            <svg width="27" height="27" viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="M12 .8 23.2 12 12 23.2.8 12z" fill="#F05032"/>
+                                <g stroke="#fff" stroke-width="1.7" stroke-linecap="round" fill="none">
+                                    <path d="M12 7.4v9.2"/>
+                                    <path d="M12 12.6 15.4 9.2"/>
+                                </g>
+                                <circle cx="12" cy="6.7" r="1.7" fill="#fff"/>
+                                <circle cx="12" cy="17.3" r="1.7" fill="#fff"/>
+                                <circle cx="15.9" cy="8.7" r="1.7" fill="#fff"/>
+                            </svg>
+                        </span>
+                        <span class="stack__name">Git</span>
+                        <span class="stack__pct">85%</span>
+                        <span class="stack__bar" aria-hidden="true"><i></i></span>
+                    </li>
+
+                    <li class="stack__item" style="--pct: 70%" data-reveal>
+                        <span class="stack__icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true">
+                                <g transform="translate(4 0)">
+                                    <path d="M8 0H4a4 4 0 0 0 0 8h4z" fill="#F24E1E"/>
+                                    <path d="M8 0h4a4 4 0 0 1 0 8H8z" fill="#FF7262"/>
+                                    <path d="M8 8H4a4 4 0 0 0 0 8h4z" fill="#A259FF"/>
+                                    <circle cx="12" cy="12" r="4" fill="#1ABCFE"/>
+                                    <path d="M8 16H4a4 4 0 0 0 0 8h4z" fill="#0ACF83"/>
+                                </g>
+                            </svg>
+                        </span>
+                        <span class="stack__name">Figma</span>
+                        <span class="stack__pct">70%</span>
+                        <span class="stack__bar" aria-hidden="true"><i></i></span>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <div class="about-grid">
+            <div class="panel" data-reveal>
+                <h2 class="panel__title" data-i18n="about.panelTitle">Impact-driven work</h2>
+                <p data-i18n="about.p1">My work is guided by a simple principle: understand how software behaves in real environments, and how it can solve practical problems. That drives every project, whether I am configuring networked services, debugging system issues, or designing offline-capable tools.</p>
+                <p data-i18n="about.p2">Beyond the technical side, I want to build systems that are inclusive, reliable and human-centred. Software engineering is not only about writing code. It is about building things that last, serve, and hold up in use.</p>
+            </div>
+
+            <div class="quote-box" data-reveal>
+                <p class="quote-box__label" data-i18n="about.missionLabel">Mission</p>
+                <p class="quote-box__text" data-i18n="about.mission">
+                    To empower African youth in rural public schools with technology that unlocks
+                    their potential, turns their talents into tangible opportunities, and equips
+                    them to become changemakers who uplift their communities and shape the future
+                    of Africa.
+                </p>
             </div>
         </div>
-    </nav>
 
-    <main class="page">
-        <div class="page__container">
-            <h1 class="page__title">About Me</h1>
+    </div>
+</main>
 
-            <div class="about-grid">
-                <div class="about-grid__content">
-                    <div class="content-block">
-                        <p>
-                            I am a software engineering student at African Leadership College of Higher Education.
-                            I learn by building real systems from intranet setups and Linux-based services to
-                            backend applications and accessible software products. I value discipline, structured
-                            problem-solving, and long-term thinking over shortcuts or superficial solutions.
-                        </p>
-                    </div>
+<footer class="footer">
+    <div class="footer__container">
+        <span class="footer__word">Lisette Mukiza</span>
 
-                    <div class="content-block">
-                        <h2 class="content-block__title">Impact-Driven Work</h2>
+        <ul class="footer__social">
+            <li>
+                <a href="https://github.com/lisette-lachiever" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><use href="#i-github"/></svg>
+                </a>
+            </li>
+            <li>
+                <a href="https://linkedin.com/in/lisette-mukiza" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><use href="#i-linkedin"/></svg>
+                </a>
+            </li>
+            <li>
+                <a href="mailto:mukizalisette@gmail.com" aria-label="Email">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" aria-hidden="true"><use href="#i-mail"/></svg>
+                </a>
+            </li>
+        </ul>
 
-                        <p>
-                            My work is guided by a simple principle: to understand how software behaves in real
-                            environments and how it can solve practical problems. This approach drives my projects,
-                            whether configuring networked services, debugging system issues, or designing scalable
-                            offline tools like <strong>LearnPod</strong>.
-                        </p>
+        <p class="footer__note" data-i18n="footer.note">Built from scratch. No template.</p>
+    </div>
+</footer>
 
-                        <p>
-                            Beyond technical work, I am committed to using my skills to create systems that are
-                            inclusive, reliable, and human-centered. I believe software engineering is not just
-                            about writing code but about building solutions that last, serve, and make an impact.
-                        </p>
-                    </div>
-
-                    <div class="mission-box">
-                        <h3 class="mission-box__label">Mission Statement</h3>
-                        <p class="mission-box__text">
-                            To empower African youth in rural public schools with technology that unlocks their
-                            potential, transforms their talents into tangible opportunities, and equips them to
-                            become changemakers who uplift their communities and shape Africa's future.
-                        </p>
-                    </div>
-                </div>
-
-                <div class="about-grid__visual">
-                    <div class="profile-card">
-                        <div class="profile-card__image-container">
-                            <img
-                                src="assets/images/profile.jpeg"
-                                alt="Lisette"
-                                class="profile-card__image"
-                            />
-                        </div>
-
-                        <div class="profile-card__info">
-                            <h3 class="profile-card__name">Lisette Mukiza</h3>
-                            <p class="profile-card__role">Software Engineering Student</p>
-                            <p class="profile-card__focus">Machine Learning</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </main>
-
-    <footer class="footer">
-        <div class="footer__container">
-            <svg
-                width="64"
-                height="32"
-                viewBox="-32 -16 64 32"
-                xmlns="http://www.w3.org/2000/svg"
-            >
-                <path
-                    d="
-                        M -24 0
-                        C -24 -10 -8 -10 0 0
-                        C 8 10 24 10 24 0
-                        C 24 -10 8 -10 0 0
-                        C -8 10 -24 10 -24 0
-                    "
-                    fill="none"
-                    stroke="#0d6346"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                />
-            </svg>
-
-            <p class="footer__text">
-                Learning to build systems that scale and serve.
-            </p>
-        </div>
-    </footer>
-
-    <script src="scripts/main.js"></script>
-    <script src="scripts/theme-toggle.js"></script>
+<script src="scripts/i18n.js"></script>
+<script src="scripts/theme-toggle.js"></script>
+<script src="scripts/main.js"></script>
 </body>
 </html>

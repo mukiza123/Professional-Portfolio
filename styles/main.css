@@ -1,822 +1,2105 @@
-/* ==========================================
-   CSS Variables & Root Styles
-   ========================================== */
+/* ==========================================================================
+   Lisette Mukiza - portfolio UI
+   Soft-relief (neumorphic) design system.
+
+   The whole surface language is built from one rule: every panel is the same
+   colour as the page, and only two shadows separate it from the ground - a
+   light one up-left, a dark one down-right. Nothing here uses a border to
+   fake depth, because mixing borders with relief reads as a template.
+   ========================================================================== */
 
 :root {
-  --color-primary:#0d6346;
-  --color-primary-dark: #1a7253;
-  --color-black: #0A0A0A;
-  --color-white: #FFFFFF;
-  --color-grey-50: #F9FAFB;
-  --color-grey-100: #F3F4F6;
-  --color-grey-200: #E5E7EB;
-  --color-grey-300: #D1D5DB;
-  --color-grey-600: #4B5563;
-  --color-grey-700: #374151;
-  --color-grey-800: #1F2937;
-  
-  --color-bg: var(--color-white);
-  --color-bg-secondary: var(--color-grey-50);
-  --color-text-primary: var(--color-black);
-  --color-text-secondary: var(--color-grey-700);
-  --color-text-muted: var(--color-grey-600);
-  --color-border: var(--color-grey-200);
-  
-  --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  --font-weight-light: 300;
-  --font-weight-normal: 400;
-  --font-weight-medium: 500;
-  --font-weight-semibold: 600;
-  --font-weight-bold: 700;
-  
-  --spacing-xs: 0.5rem;
-  --spacing-sm: 1rem;
-  --spacing-md: 1.5rem;
-  --spacing-lg: 2rem;
-  --spacing-xl: 3rem;
-  --spacing-2xl: 4rem;
-  --spacing-3xl: 6rem;
-  --spacing-4xl: 8rem;
-  
-  --max-width: 1200px;
-  --nav-height: 80px;
-  
-  --radius-sm: 4px;
-  --radius-md: 8px;
-  --radius-lg: 12px;
-  --radius-xl: 16px;
-  
-  --transition-fast: 150ms ease;
-  --transition-base: 250ms ease;
-  --transition-slow: 400ms ease;
-  
-  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+  /* --- Ink ------------------------------------------------------------- */
+  --ink:            #101112;
+  --ink-soft:       #4B5054;
+  --ink-muted:      #63696D;
+
+  /* --- Ground ----------------------------------------------------------
+     Relief needs a mid-light ground. Pure white cannot cast a light-side
+     highlight, so the base sits a few steps down from it.                */
+  --ground:         #E7EAEC;
+  --ground-high:    #EDEFF1;
+
+  /* --- Accent ----------------------------------------------------------
+     Olive taken from the hero reference. It carries fills and display type;
+     --accent-ink is the darkened cut used whenever accent has to be read as
+     small text, since the raw olive is far too light for body contrast.  */
+  --accent:         #B4C82E;
+  --accent-bright:  #C6DB3C;
+  --accent-deep:    #8CA01C;
+  --accent-ink:     #5A6610;
+
+  /* --- Relief ----------------------------------------------------------- */
+  --relief-light:   #FFFFFF;
+  --relief-dark:    #C2C7CC;
+
+  --lift-sm: 4px 4px 8px var(--relief-dark), -4px -4px 8px var(--relief-light);
+  --lift-md: 7px 7px 16px var(--relief-dark), -7px -7px 16px var(--relief-light);
+  --lift-lg: 12px 12px 26px var(--relief-dark), -12px -12px 26px var(--relief-light);
+  --sink-sm: inset 3px 3px 6px var(--relief-dark), inset -3px -3px 6px var(--relief-light);
+  --sink-md: inset 5px 5px 11px var(--relief-dark), inset -5px -5px 11px var(--relief-light);
+
+  /* --- Type ------------------------------------------------------------- */
+  --font-ui:      'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-display: 'Fraunces', 'Iowan Old Style', 'Palatino Linotype', Georgia, serif;
+
+  --w-normal: 400;
+  --w-medium: 500;
+  --w-semi: 600;
+  --w-bold: 700;
+  --w-black: 900;
+
+  /* --- Space ------------------------------------------------------------ */
+  --s-xs: 0.5rem;
+  --s-sm: 1rem;
+  --s-md: 1.5rem;
+  --s-lg: 2rem;
+  --s-xl: 3rem;
+  --s-2xl: 4rem;
+  --s-3xl: 6rem;
+  --s-4xl: 8rem;
+
+  --max-width: 1180px;
+  --nav-height: 84px;
+
+  /* Relief reads best on generous radii - tight corners flatten the shadow. */
+  --r-sm: 10px;
+  --r-md: 16px;
+  --r-lg: 24px;
+  --r-pill: 999px;
+
+  --t-base: 260ms cubic-bezier(.4, 0, .2, 1);
+  --t-slow: 460ms cubic-bezier(.2, .7, .3, 1);
+
+  /* Hero backdrop */
+  --grid-line: rgba(16, 17, 18, .055);
+
+  /* Journey road */
+  --road:       #14181A;
+  --road-edge:  #2A3033;
+  --road-dash:  #F3F5F6;
+
+  /* Three-step pin ramp, all cut from the one accent hue. */
+  --pin-1: #7E9012;
+  --pin-2: #A3B824;
+  --pin-3: #C6DB3C;
+  --pin-face: #101112;
 }
 
-/* ==========================================
-   Base Styles
-   ========================================== */
+/* ==========================================================================
+   Base
+   ========================================================================== */
 
-* {
+*,
+*::before,
+*::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
 html {
-  scroll-behavior: smooth;
   font-size: 16px;
+  scroll-behavior: smooth;
+  scroll-padding-top: calc(var(--nav-height) + var(--s-sm));
 }
 
 body {
-  font-family: var(--font-family);
-  font-weight: var(--font-weight-normal);
-  line-height: 1.6;
-  color: var(--color-text-primary);
-  background-color: var(--color-bg);
+  font-family: var(--font-ui);
+  font-weight: var(--w-normal);
+  font-size: 1rem;
+  line-height: 1.65;
+  color: var(--ink);
+  background-color: var(--ground);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-h1, h2, h3, h4 {
-  font-weight: var(--font-weight-semibold);
-  line-height: 1.2;
-  color: var(--color-text-primary);
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
 }
 
-h1 { font-size: 3rem; }
-h2 { font-size: 2.25rem; }
-h3 { font-size: 1.5rem; }
-h4 { font-size: 1.25rem; }
-
-p { margin-bottom: var(--spacing-md); }
+ul { list-style: none; }
 
 a {
   color: inherit;
   text-decoration: none;
-  transition: color var(--transition-base);
-}
-
-ul {
-  list-style: none;
+  transition: color var(--t-base);
 }
 
 button {
-  font-family: inherit;
-  cursor: pointer;
+  font: inherit;
+  color: inherit;
   border: none;
   background: none;
+  cursor: pointer;
 }
 
-img {
-  max-width: 100%;
-  height: auto;
-  display: block;
+:focus-visible {
+  outline: 3px solid var(--accent-deep);
+  outline-offset: 3px;
+  border-radius: var(--r-sm);
 }
 
-/* ==========================================
+/* Skip link - relief styling would only get in the way here. */
+.skip-link {
+  position: absolute;
+  top: -100px;
+  left: var(--s-sm);
+  z-index: 200;
+  padding: 0.75rem 1.25rem;
+  border-radius: var(--r-sm);
+  background-color: var(--ink);
+  color: var(--ground-high);
+  font-weight: var(--w-semi);
+  transition: top var(--t-base);
+}
+
+.skip-link:focus {
+  top: var(--s-sm);
+}
+
+/* ==========================================================================
+   Typography
+   ========================================================================== */
+
+h1, h2, h3, h4 {
+  line-height: 1.15;
+  color: var(--ink);
+  font-weight: var(--w-semi);
+}
+
+.display {
+  font-family: var(--font-display);
+  font-weight: var(--w-black);
+  font-variation-settings: 'opsz' 144;
+  letter-spacing: -0.02em;
+  line-height: 0.9;
+}
+
+.eyebrow {
+  font-size: 0.8125rem;
+  font-weight: var(--w-bold);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent-ink);
+}
+
+.lede {
+  font-size: 1.0625rem;
+  color: var(--ink-soft);
+  line-height: 1.8;
+}
+
+/* ==========================================================================
+   Relief primitives
+   Reused everywhere rather than re-declaring shadows per component.
+   ========================================================================== */
+
+.relief {
+  background-color: var(--ground);
+  border-radius: var(--r-md);
+  box-shadow: var(--lift-md);
+}
+
+.relief--sunk {
+  background-color: var(--ground);
+  border-radius: var(--r-md);
+  box-shadow: var(--sink-md);
+}
+
+/* Anything clickable presses in on :active. That press is the whole point of
+   the style, so it is defined once and inherited. */
+.pressable {
+  transition: box-shadow var(--t-base), transform var(--t-base), color var(--t-base);
+}
+
+.pressable:hover {
+  box-shadow: var(--lift-lg);
+}
+
+.pressable:active {
+  box-shadow: var(--sink-sm);
+  transform: translateY(1px);
+}
+
+/* ==========================================================================
    Navigation
-   ========================================== */
+   ========================================================================== */
 
 .nav {
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: var(--nav-height);
-  background-color: var(--color-bg);
-  border-bottom: 1px solid var(--color-border);
+  inset: 0 0 auto 0;
   z-index: 100;
-  transition: background-color var(--transition-base), box-shadow var(--transition-base);
+  height: var(--nav-height);
+  display: flex;
+  align-items: center;
+  background-color: var(--ground);
+  transition: box-shadow var(--t-base);
+}
+
+.nav--scrolled {
+  box-shadow: 0 6px 20px -8px var(--relief-dark);
 }
 
 .nav__container {
+  width: 100%;
   max-width: var(--max-width);
   margin: 0 auto;
-  padding: 0 var(--spacing-lg);
-  height: 100%;
+  padding: 0 var(--s-lg);
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: var(--s-md);
 }
 
+/* The mark is line art supplied as artwork. It is applied as a mask rather
+   than an image so it takes the theme colour, and the alpha was gamma-lifted
+   when it was downscaled - a 1px stroke otherwise averages away to nothing at
+   this size. Shipped at 2x for high-density screens. */
 .nav__logo {
-  display: flex;
-  align-items: center;
-  color: var(--color-primary);
-  transition: transform var(--transition-base);
-}
-
-.nav__logo:hover {
-  transform: scale(1.05);
-}
-
-.logo-infinity {
   display: block;
+  width: 92px;
+  height: 55px;
+  flex-shrink: 0;
+  -webkit-mask: url('../assets/images/logo-mark.png') center / contain no-repeat;
+  mask: url('../assets/images/logo-mark.png') center / contain no-repeat;
+  transition: background-color var(--t-base), transform var(--t-base);
 }
+
+/* Colour is applied only where masking works, so a browser without mask
+   support shows nothing rather than a solid green rectangle. */
+@supports ((-webkit-mask-image: url('#m')) or (mask-image: url('#m'))) {
+  .nav__logo { background-color: var(--accent-ink); }
+  .nav__logo:hover { background-color: var(--accent-deep); }
+}
+
+.nav__logo:active { transform: translateY(1px); }
 
 .nav__links {
   display: flex;
   align-items: center;
-  gap: var(--spacing-lg);
+  gap: var(--s-xs);
 }
 
 .nav__link {
-  font-size: 0.9375rem;
-  font-weight: var(--font-weight-medium);
-  color: var(--color-text-secondary);
   position: relative;
+  padding: 0.55rem 1rem;
+  border-radius: var(--r-pill);
+  font-size: 0.9375rem;
+  font-weight: var(--w-medium);
+  color: var(--ink-soft);
+  transition: color var(--t-base), box-shadow var(--t-base);
 }
 
-.nav__link::after {
-  content: '';
-  position: absolute;
-  bottom: -4px;
-  left: 0;
-  width: 0;
-  height: 2px;
-  background-color: var(--color-primary);
-  transition: width var(--transition-base);
+.nav__link:hover {
+  color: var(--ink);
 }
 
-.nav__link:hover,
+/* The current page is pressed into the surface - no underline needed. */
 .nav__link--active {
-  color: var(--color-primary);
+  color: var(--ink);
+  font-weight: var(--w-semi);
+  box-shadow: var(--sink-sm);
 }
 
-.nav__link:hover::after,
-.nav__link--active::after {
-  width: 100%;
+.nav__cta {
+  padding: 0.7rem 1.6rem;
+  border-radius: var(--r-pill);
+  background-color: var(--accent);
+  color: var(--ink);
+  font-size: 0.9375rem;
+  font-weight: var(--w-bold);
+  box-shadow: var(--lift-sm);
+  transition: box-shadow var(--t-base), background-color var(--t-base), transform var(--t-base);
+}
+
+.nav__cta:hover {
+  background-color: var(--accent-bright);
+  box-shadow: var(--lift-md);
+}
+
+.nav__cta:active {
+  box-shadow: var(--sink-sm);
+  transform: translateY(1px);
+}
+
+.nav__actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-shrink: 0;
 }
 
 .theme-toggle {
-  width: 40px;
-  height: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: var(--radius-md);
-  color: var(--color-text-secondary);
-  transition: background-color var(--transition-base), color var(--transition-base);
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  flex-shrink: 0;
+  border-radius: var(--r-pill);
+  background-color: var(--ground);
+  color: var(--ink-soft);
+  box-shadow: var(--lift-sm);
+  transition: box-shadow var(--t-base), color var(--t-base);
 }
 
 .theme-toggle:hover {
-  background-color: var(--color-grey-100);
-  color: var(--color-primary);
+  color: var(--accent-ink);
 }
 
-.theme-toggle__icon .moon {
+.theme-toggle:active {
+  box-shadow: var(--sink-sm);
+}
+
+.theme-toggle__icon .moon { display: none; }
+
+/* Mobile menu button - hidden until the links collapse. */
+.nav__burger {
   display: none;
+  width: 44px;
+  height: 44px;
+  place-items: center;
+  border-radius: var(--r-pill);
+  background-color: var(--ground);
+  box-shadow: var(--lift-sm);
 }
 
-/* ==========================================
-   Hero Section (Home Page)
-   ========================================== */
+.nav__burger { position: relative; }
+
+.nav__burger span {
+  position: absolute;
+  left: 50%;
+  width: 18px;
+  height: 2px;
+  margin-left: -9px;
+  border-radius: 2px;
+  background-color: var(--ink);
+  transition: transform var(--t-base), opacity var(--t-base);
+}
+
+.nav__burger span:nth-child(1) { top: 15px; }
+.nav__burger span:nth-child(2) { top: 21px; }
+.nav__burger span:nth-child(3) { top: 27px; }
+
+.nav__burger[aria-expanded="true"] span:nth-child(1) {
+  transform: translateY(6px) rotate(45deg);
+}
+.nav__burger[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+.nav__burger[aria-expanded="true"] span:nth-child(3) {
+  transform: translateY(-6px) rotate(-45deg);
+}
+
+/* ==========================================================================
+   Buttons
+   ========================================================================== */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  padding: 0.95rem 2rem;
+  border-radius: var(--r-pill);
+  font-size: 1rem;
+  font-weight: var(--w-bold);
+  background-color: var(--ground);
+  color: var(--ink);
+  box-shadow: var(--lift-md);
+  transition: box-shadow var(--t-base), background-color var(--t-base),
+              color var(--t-base), transform var(--t-base);
+}
+
+.btn:hover { box-shadow: var(--lift-lg); }
+
+.btn:active {
+  box-shadow: var(--sink-sm);
+  transform: translateY(1px);
+}
+
+.btn--accent {
+  background-color: var(--accent);
+  color: var(--ink);
+}
+
+.btn--accent:hover { background-color: var(--accent-bright); }
+
+.btn__icon {
+  flex-shrink: 0;
+  transition: transform var(--t-base);
+}
+
+.btn:hover .btn__icon { transform: translate(2px, 2px); }
+
+/* ==========================================================================
+   Hero
+   Three columns: name + role on the left, portrait in the middle, tagline
+   and call to action on the right. The surname is taken out of flow and
+   dropped bottom-right so it crosses the portrait.
+   ========================================================================== */
 
 .hero {
-  min-height: 100vh;
+  position: relative;
+  overflow: hidden;
+  padding-top: var(--nav-height);
+  min-height: 100svh;
   display: flex;
   align-items: center;
-  padding-top: var(--nav-height);
-  background: linear-gradient(135deg, var(--color-bg) 0%, var(--color-grey-50) 100%);
+}
+
+/* Dot-ruled ground, faded out at the edges so it never fights the type. */
+.hero__backdrop {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
+  background-size: 58px 58px;
+  -webkit-mask-image: radial-gradient(ellipse 78% 68% at 50% 46%, #000 42%, transparent 82%);
+  mask-image: radial-gradient(ellipse 78% 68% at 50% 46%, #000 42%, transparent 82%);
 }
 
 .hero__container {
+  position: relative;
+  z-index: 1;
+  width: 100%;
   max-width: var(--max-width);
   margin: 0 auto;
-  padding: var(--spacing-3xl) var(--spacing-lg);
-  width: 100%;
+  padding: var(--s-2xl) var(--s-lg);
 }
 
-.hero__content-grid {
+.hero__stage {
+  position: relative;
   display: grid;
-  grid-template-columns: 1.2fr 1fr;
-  gap: var(--spacing-3xl);
+  grid-template-columns: minmax(0, 1.05fr) minmax(290px, 400px) minmax(0, 1fr);
   align-items: center;
+  column-gap: var(--s-2xl);
+  min-height: 640px;
 }
 
-.hero__text {
-  max-width: 600px;
+/* --- Name ----------------------------------------------------------------
+   Both halves are one h1 for screen readers; the visual split is presentation
+   only, so the surname is positioned rather than reordered in the markup.  */
+
+.hero__name {
+  margin: 0 0 var(--s-sm);
 }
 
-.hero__logo {
-  color: var(--color-primary);
-  margin-bottom: var(--spacing-lg);
-  animation: float 6s ease-in-out infinite;
+.hero__first,
+.hero__last {
+  display: block;
+  font-family: var(--font-display);
+  font-weight: var(--w-black);
+  font-variation-settings: 'opsz' 144;
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+  white-space: nowrap;
 }
 
-@keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
+.hero__first {
+  position: relative;
+  z-index: 3;
+  font-size: clamp(3.5rem, 10.5vw, 9rem);
+  color: var(--ink);
+  margin-left: -0.05em;
 }
 
-.infinity-path {
-  stroke-dasharray: 400;
-  stroke-dashoffset: 400;
-  animation: draw 2s ease-out forwards;
+.hero__last {
+  position: absolute;
+  right: -0.03em;
+  bottom: -0.42em;
+  z-index: 3;
+  font-size: clamp(3.5rem, 10.5vw, 9rem);
+  color: var(--accent);
+  pointer-events: none;
 }
 
-@keyframes draw {
-  to { stroke-dashoffset: 0; }
-}
-
-.hero__title {
-  font-size: 3.5rem;
-  font-weight: var(--font-weight-bold);
-  margin-bottom: var(--spacing-sm);
-  color: var(--color-text-primary);
-}
-
-.hero__subtitle {
-  font-size: 1.25rem;
-  font-weight: var(--font-weight-medium);
-  color: var(--color-primary);
-  margin-bottom: var(--spacing-md);
-}
-
-.hero__description {
-  font-size: 1.125rem;
-  color: var(--color-text-secondary);
-  line-height: 1.8;
-  margin-bottom: var(--spacing-xl);
-}
-
-.hero__actions {
+.hero__col {
+  z-index: 3;
   display: flex;
-  gap: var(--spacing-md);
+  flex-direction: column;
 }
 
-.hero__image-container {
+.hero__col--left {
+  align-items: flex-start;
+  gap: var(--s-xl);
+}
+
+.hero__col--right {
+  align-items: flex-start;
+  gap: var(--s-lg);
+  padding-bottom: var(--s-3xl);
+}
+
+/* --- Role badge and its arrow -------------------------------------------- */
+
+.hero__role {
   position: relative;
   display: flex;
-  justify-content: center;
   align-items: center;
+  padding-left: 64px;
 }
 
-.hero__image-frame {
+/* Hand-drawn arrow. The path is deliberately uneven - a mathematically clean
+   curve here is the tell that nobody drew it. */
+.hero__arrow {
+  position: absolute;
+  left: 2px;
+  top: -6px;
+  width: 58px;
+  height: 58px;
+  color: var(--ink);
+}
+
+.hero__badge {
+  display: inline-block;
+  padding: 0.6rem 1.35rem;
+  border-radius: var(--r-pill);
+  background-color: var(--accent);
+  color: var(--ink);
+  font-size: 0.9375rem;
+  font-weight: var(--w-semi);
+  box-shadow: var(--lift-sm);
+}
+
+/* --- Socials -------------------------------------------------------------- */
+
+.hero__social {
+  display: flex;
+  align-items: center;
+  gap: var(--s-sm);
+}
+
+.hero__social-link {
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  border-radius: var(--r-pill);
+  background-color: var(--ground);
+  color: var(--ink);
+  box-shadow: var(--lift-sm);
+  transition: box-shadow var(--t-base), color var(--t-base), transform var(--t-base);
+}
+
+.hero__social-link:hover {
+  color: var(--accent-ink);
+  box-shadow: var(--lift-md);
+  transform: translateY(-2px);
+}
+
+.hero__social-link:active {
+  box-shadow: var(--sink-sm);
+  transform: translateY(1px);
+}
+
+/* --- Portrait ------------------------------------------------------------
+   Arched frame. The photo is a normal rectangular shot, so the bottom edge
+   is masked into the ground to imitate a cutout without needing one. Drop a
+   background-removed PNG in at the same path and it still works.          */
+
+.hero__portrait {
   position: relative;
   z-index: 2;
-  border-radius: var(--radius-xl);
-  overflow: hidden;
-  box-shadow: var(--shadow-xl);
-  border: 4px solid var(--color-white);
-  background-color: var(--color-grey-200);
-  aspect-ratio: 3/4;
+  justify-self: center;
+  align-self: end;
   width: 100%;
-  max-width: 400px;
+  max-width: 378px;
 }
 
-.hero__image {
+.hero__portrait img {
+  display: block;
+  width: 100%;
+  height: auto;
+  /* The source photo is cropped at the waist; a short fade on that edge only
+     keeps the cut from reading as a hard horizontal line across the grid. */
+  -webkit-mask-image: linear-gradient(to bottom, #000 86%, transparent 100%);
+  mask-image: linear-gradient(to bottom, #000 86%, transparent 100%);
+}
+
+/* --- Tagline and CTA ------------------------------------------------------ */
+
+.hero__tagline {
+  font-family: var(--font-display);
+  font-weight: var(--w-semi);
+  font-variation-settings: 'opsz' 40;
+  font-size: clamp(1.5rem, 2.4vw, 2.15rem);
+  line-height: 1.22;
+  letter-spacing: -0.015em;
+  color: var(--ink);
+  max-width: 15ch;
+}
+
+/* --- Floating marks -------------------------------------------------------
+   Loose, off-grid, and low contrast. They are scenery, not information, so
+   they are hidden from assistive tech and dropped on small screens.       */
+
+.hero__marks {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.hero__mark {
+  position: absolute;
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  border-radius: var(--r-sm);
+  background-color: var(--ground);
+  /* Scenery, not content - deliberately quieter than any real text, and
+     exempt from the text contrast floor because it is aria-hidden. */
+  color: var(--ink-soft);
+  opacity: .38;
+  box-shadow: var(--lift-sm);
+}
+
+.hero__mark--brackets { left: 1.5%; top: 16%;   transform: rotate(-9deg); }
+.hero__mark--monitor  { left: 4%;   bottom: 10%; transform: rotate(5deg); }
+.hero__mark--terminal { right: 3%;  bottom: 20%; transform: rotate(-6deg); }
+.hero__mark--html     { display: none; }
+
+@media (prefers-reduced-motion: no-preference) {
+  .hero__mark {
+    animation: drift 7s ease-in-out infinite;
+  }
+  .hero__mark--html     { animation-delay: -1.6s; }
+  .hero__mark--monitor  { animation-delay: -3.2s; }
+  .hero__mark--terminal { animation-delay: -4.8s; }
+}
+
+@keyframes drift {
+  0%, 100% { translate: 0 0; }
+  50%      { translate: 0 -9px; }
+}
+
+/* ==========================================================================
+   Journey
+   A winding road with numbered stops alternating either side of it.
+
+   Geometry note: the road is a serpentine cubic in an 800x2400 viewBox whose
+   curve midpoints land exactly at x=250 / x=550 and y=200, 600, 1000, 1400,
+   1800, 2200. The stop positions below are those same coordinates expressed
+   as percentages, which is why the pins sit on the tarmac at every width -
+   the container is locked to the viewBox aspect ratio so scaling stays
+   uniform. Change one and you must change the other.
+   ========================================================================== */
+
+.journey {
+  position: relative;
+  padding: var(--s-4xl) 0 var(--s-3xl);
+}
+
+.journey__container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 var(--s-lg);
+}
+
+.journey__head {
+  max-width: 44ch;
+  margin: 0 auto var(--s-2xl);
+  text-align: center;
+}
+
+.journey__title {
+  font-family: var(--font-display);
+  font-weight: var(--w-black);
+  font-variation-settings: 'opsz' 144;
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  letter-spacing: -0.03em;
+  line-height: 0.95;
+  margin: var(--s-xs) 0 var(--s-sm);
+}
+
+.journey__intro {
+  color: var(--ink-soft);
+  font-size: 1.0625rem;
+}
+
+.journey__map {
+  position: relative;
+  max-width: 820px;
+  margin: 0 auto;
+  aspect-ratio: 800 / 2400;
+  /* Pin size is quoted in cqw so it measures against the map, not against a
+     stop's padded content box - percentages there land the pin off-centre. */
+  container-type: inline-size;
+}
+
+.journey__road {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;
 }
 
-.hero__image-bg {
+.journey__road-base {
+  fill: none;
+  stroke: var(--road);
+  stroke-width: 54;
+  stroke-linecap: round;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  transition: stroke-dashoffset 2s cubic-bezier(.4, 0, .2, 1);
+}
+
+.journey__road-edge {
+  fill: none;
+  stroke: var(--road-edge);
+  stroke-width: 58;
+  stroke-linecap: round;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  transition: stroke-dashoffset 2s cubic-bezier(.4, 0, .2, 1);
+}
+
+.journey__road-dash {
+  fill: none;
+  stroke: var(--road-dash);
+  stroke-width: 4;
+  stroke-linecap: round;
+  stroke-dasharray: 0.011 0.013;
+  opacity: 0;
+  transition: opacity .7s ease .9s;
+}
+
+.journey__map.is-drawn .journey__road-base,
+.journey__map.is-drawn .journey__road-edge { stroke-dashoffset: 0; }
+
+.journey__map.is-drawn .journey__road-dash { opacity: .85; }
+
+/* --- Stops ---------------------------------------------------------------- */
+
+.journey__stops {
   position: absolute;
-  top: 20px;
-  right: -20px;
-  width: 100%;
-  max-width: 400px;
-  aspect-ratio: 3/4;
-  background: linear-gradient(135deg, var(--color-primary) 0%, #0d6346 100%);
-  border-radius: var(--radius-xl);
-  z-index: 1;
+  inset: 0;
+  margin: 0;
+  padding: 0;
 }
 
-/* ==========================================
-   Buttons
-   ========================================== */
-
-.btn {
-  display: inline-block;
-  padding: 0.875rem 2rem;
-  font-size: 1rem;
-  font-weight: var(--font-weight-medium);
-  border-radius: var(--radius-md);
-  transition: all var(--transition-base);
-  cursor: pointer;
+.journey__stop {
+  --center: -50%;
+  position: absolute;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  gap: var(--s-md);
+  opacity: 0;
+  transform: translateY(calc(var(--center) + 26px)) scale(.96);
+  transition: opacity .6s ease, transform .6s cubic-bezier(.2, .7, .3, 1);
 }
 
-.btn--primary {
-  background-color: var(--color-primary);
-  color: var(--color-white);
+.journey__stop.is-visible {
+  opacity: 1;
+  transform: translateY(var(--center)) scale(1);
 }
 
-.btn--primary:hover {
-  background-color: var(--color-primary-dark);
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-lg);
-  color: var(--color-white);
+.journey__stop:nth-child(1) { top: 8.3333%; }
+.journey__stop:nth-child(2) { top: 25%; }
+.journey__stop:nth-child(3) { top: 41.6667%; }
+.journey__stop:nth-child(4) { top: 58.3333%; }
+.journey__stop:nth-child(5) { top: 75%; }
+.journey__stop:nth-child(6) { top: 91.6667%; }
+
+/* 27.6% = 31.25% road centre minus half the 7.3cqw pin. */
+.journey__stop:nth-child(odd) { padding-left: 27.6%; }
+
+.journey__stop:nth-child(even) {
+  flex-direction: row-reverse;
+  padding-right: 27.6%;
 }
 
-.btn--secondary {
-  border: 2px solid var(--color-primary);
-  color: var(--color-primary);
-  background-color: transparent;
+/* --- Pin ------------------------------------------------------------------ */
+
+.journey__pin {
+  position: relative;
+  display: grid;
+  place-items: center;
+  flex: 0 0 auto;
+  width: 7.3cqw;
+  height: 7.3cqw;
+  border-radius: 50% 50% 50% 0;
+  background-color: var(--pin-1);
+  box-shadow: var(--lift-sm);
 }
 
-.btn--secondary:hover {
-  background-color: var(--color-primary);
-  color: var(--color-white);
-  transform: translateY(-2px);
+.journey__stop:nth-child(odd) .journey__pin  { transform: rotate(-135deg); }
+.journey__stop:nth-child(even) .journey__pin { transform: rotate(45deg); }
+
+.journey__pin-num {
+  font-family: var(--font-display);
+  font-weight: var(--w-black);
+  font-size: 1.25rem;
+  line-height: 1;
+  color: var(--pin-face);
 }
 
-/* ==========================================
-   Page Layout (Inner Pages)
-   ========================================== */
+.journey__stop:nth-child(odd) .journey__pin-num  { transform: rotate(135deg); }
+.journey__stop:nth-child(even) .journey__pin-num { transform: rotate(-45deg); }
+
+/* Three-step ramp rather than one colour per stop. */
+.journey__stop:nth-child(3n + 1) .journey__pin { background-color: var(--pin-1); }
+.journey__stop:nth-child(3n + 2) .journey__pin { background-color: var(--pin-2); }
+.journey__stop:nth-child(3n + 3) .journey__pin { background-color: var(--pin-3); }
+
+/* --- Card ----------------------------------------------------------------- */
+
+.journey__card {
+  flex: 1 1 auto;
+  max-width: 290px;
+  padding: var(--s-md);
+  border-radius: var(--r-md);
+  background-color: var(--ground);
+  box-shadow: var(--lift-md);
+}
+
+.journey__stop:nth-child(even) .journey__card { text-align: right; }
+
+.journey__card-meta {
+  font-size: 0.75rem;
+  font-weight: var(--w-bold);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent-ink);
+  margin-bottom: 0.35rem;
+}
+
+.journey__card-title {
+  font-size: 1.125rem;
+  font-weight: var(--w-bold);
+  line-height: 1.25;
+  margin-bottom: 0.2rem;
+}
+
+.journey__card-org {
+  font-size: 0.9375rem;
+  font-weight: var(--w-medium);
+  color: var(--ink-soft);
+  margin-bottom: 0.45rem;
+}
+
+.journey__card-desc {
+  font-size: 0.875rem;
+  line-height: 1.6;
+  color: var(--ink-muted);
+}
+
+/* ==========================================================================
+   Inner pages
+   ========================================================================== */
 
 .page {
-  min-height: 100vh;
-  padding-top: var(--nav-height);
-  padding-bottom: var(--spacing-4xl);
+  padding-top: calc(var(--nav-height) + var(--s-2xl));
+  padding-bottom: var(--s-4xl);
 }
 
 .page__container {
   max-width: var(--max-width);
   margin: 0 auto;
-  padding: var(--spacing-3xl) var(--spacing-lg);
+  padding: 0 var(--s-lg);
+}
+
+.page__head {
+  max-width: 58ch;
+  margin-bottom: var(--s-2xl);
 }
 
 .page__title {
-  font-size: 3rem;
-  margin-bottom: var(--spacing-xl);
-  text-align: center;
-  color: #0d6346;
+  font-family: var(--font-display);
+  font-weight: var(--w-black);
+  font-variation-settings: 'opsz' 144;
+  font-size: clamp(2.5rem, 6vw, 4.25rem);
+  letter-spacing: -0.03em;
+  line-height: 0.95;
+  margin: var(--s-xs) 0 var(--s-sm);
 }
 
-/* ==========================================
-   About Page
-   ========================================== */
+.page__intro {
+  font-size: 1.0625rem;
+  color: var(--ink-soft);
+  line-height: 1.8;
+}
+
+.section { margin-bottom: var(--s-3xl); }
+
+.section__title {
+  font-size: 1.5rem;
+  font-weight: var(--w-bold);
+  margin-bottom: var(--s-md);
+}
+
+.panel {
+  padding: var(--s-xl);
+  border-radius: var(--r-lg);
+  background-color: var(--ground);
+  box-shadow: var(--lift-md);
+}
+
+.panel__title {
+  font-size: 1.375rem;
+  font-weight: var(--w-bold);
+  margin-bottom: var(--s-sm);
+}
+
+.panel p {
+  color: var(--ink-soft);
+  line-height: 1.8;
+}
+
+.panel p + p { margin-top: var(--s-sm); }
+
+/* Pressed in rather than raised, so it reads as recessed against the page. */
+.quote-box {
+  padding: var(--s-lg);
+  border-radius: var(--r-lg);
+  background-color: var(--ground);
+  box-shadow: var(--sink-md);
+}
+
+.quote-box__label {
+  font-size: 0.75rem;
+  font-weight: var(--w-bold);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent-ink);
+  margin-bottom: var(--s-xs);
+}
+
+.quote-box__text {
+  font-family: var(--font-display);
+  font-variation-settings: 'opsz' 40;
+  font-size: 1.25rem;
+  line-height: 1.5;
+  color: var(--ink);
+}
+
+/* --- About ---------------------------------------------------------------- */
 
 .about-grid {
   display: grid;
-  grid-template-columns: 1.5fr 1fr;
-  gap: var(--spacing-3xl);
-  margin-top: var(--spacing-xl);
-}
-
-.content-block {
-  margin-bottom: var(--spacing-xl);
-}
-
-.content-block__title {
-  font-size: 1.75rem;
-  margin-bottom: var(--spacing-md);
-  color: var(--color-primary);
-}
-
-.content-block p {
-  color: var(--color-text-secondary);
-  line-height: 1.8;
-}
-
-.mission-box {
-  padding: var(--spacing-lg);
-  background-color: var(--color-bg-secondary);
-  border-radius: var(--radius-md);
-}
-
-.mission-box__label {
-  font-size: 0.875rem;
-  font-weight: var(--font-weight-semibold);
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: var(--color-primary);
-  margin-bottom: var(--spacing-sm);
-}
-
-.mission-box__text {
-  font-size: 1.125rem;
-  line-height: 1.8;
-  color: var(--color-text-primary);
-  margin-bottom: 0;
+  grid-template-columns: 1.6fr 1fr;
+  gap: var(--s-xl);
+  align-items: start;
 }
 
 .profile-card {
-  background-color: var(--color-white);
-  border-radius: var(--radius-lg);
-  overflow: hidden;
-  box-shadow: var(--shadow-md);
-  border: 1px solid var(--color-border);
   position: sticky;
-  top: calc(var(--nav-height) + var(--spacing-lg));
+  top: calc(var(--nav-height) + var(--s-lg));
+  padding: var(--s-md);
+  border-radius: var(--r-lg);
+  background-color: var(--ground);
+  box-shadow: var(--lift-md);
+  text-align: center;
 }
 
-.profile-card__image-container {
+.profile-card__photo {
   width: 100%;
-  aspect-ratio: 1/1;
-  background-color: var(--color-grey-100);
+  aspect-ratio: 1;
+  border-radius: var(--r-md);
   overflow: hidden;
+  box-shadow: var(--sink-sm);
+  margin-bottom: var(--s-md);
 }
 
-.profile-card__image {
+.profile-card__photo img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
-.profile-card__info {
-  padding: var(--spacing-lg);
-  text-align: center;
-}
-
 .profile-card__name {
+  font-family: var(--font-display);
+  font-weight: var(--w-bold);
+  font-variation-settings: 'opsz' 40;
   font-size: 1.5rem;
-  margin-bottom: var(--spacing-xs);
+  margin-bottom: 0.15rem;
 }
 
 .profile-card__role {
-  color: var(--color-primary);
-  font-weight: var(--font-weight-medium);
-  margin-bottom: var(--spacing-xs);
-}
-
-.profile-card__focus {
-  color: var(--color-text-secondary);
   font-size: 0.9375rem;
-  margin-bottom: 0;
+  font-weight: var(--w-semi);
+  color: var(--accent-ink);
+  margin-bottom: var(--s-xs);
 }
 
-/* ==========================================
-   Skills Page
-   ========================================== */
+.profile-card__meta {
+  font-size: 0.875rem;
+  color: var(--ink-muted);
+}
 
-.skills-grid {
+/* ==========================================================================
+   About intro
+   Portrait on one side, statement and stack on the other.
+   ========================================================================== */
+
+.intro {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: var(--spacing-lg);
-  margin-top: var(--spacing-xl);
-}
-
-.skill-card {
-  padding: var(--spacing-xl);
-  background-color: var(--color-white);
-  border: 2px solid var(--color-border);
-  border-radius: var(--radius-lg);
-  transition: all var(--transition-base);
-}
-
-.skill-card:hover {
-  transform: translateY(-8px);
-  box-shadow: var(--shadow-xl);
-  border-color: var(--color-primary);
-}
-
-.skill-card__icon {
-  width: 64px;
-  height: 64px;
-  display: flex;
+  grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr);
   align-items: center;
-  justify-content: center;
-  background: linear-gradient(135deg, var(--color-primary) 0%, #0d6346 100%);
-  border-radius: var(--radius-md);
-  color: var(--color-white);
-  margin-bottom: var(--spacing-md);
+  gap: var(--s-2xl);
+  margin-bottom: var(--s-4xl);
 }
 
-.skill-card__title {
-  font-size: 1.5rem;
-  margin-bottom: var(--spacing-sm);
+.intro__portrait {
+  position: relative;
+  isolation: isolate;
+  justify-self: center;
+  width: 100%;
+  max-width: 380px;
 }
 
-.skill-card__description {
-  color: var(--color-text-secondary);
-  line-height: 1.7;
-  margin-bottom: 0;
+/* A cutout on a flat panel reads as a pasted-on photo. These two layers give
+   it a ground to stand on: an accent glow behind the figure, and the same
+   ruled module the hero uses, faded out before it reaches the edges. */
+.intro__portrait::before {
+  content: '';
+  position: absolute;
+  inset: 4% -4% 10%;
+  z-index: 0;
+  border-radius: 50%;
+  background: radial-gradient(circle at 50% 46%,
+    rgba(180, 200, 46, .46) 0%,
+    rgba(180, 200, 46, .18) 48%,
+    rgba(180, 200, 46, 0) 74%);
 }
 
-/* ==========================================
-   Projects Page
-   ========================================== */
-
-.featured-project {
-  background: linear-gradient(135deg, var(--color-grey-50) 0%, var(--color-white) 100%);
-  border-radius: var(--radius-lg);
-  padding: var(--spacing-2xl);
-  margin-bottom: var(--spacing-3xl);
-  border: 2px solid var(--color-border);
+.intro__portrait::after {
+  content: '';
+  position: absolute;
+  inset: -8%;
+  z-index: 0;
+  background-image:
+    linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
+  background-size: 46px 46px;
+  -webkit-mask-image: radial-gradient(ellipse 58% 56% at 50% 50%, #000 28%, transparent 76%);
+  mask-image: radial-gradient(ellipse 58% 56% at 50% 50%, #000 28%, transparent 76%);
 }
 
-.featured-project__badge {
-  display: inline-block;
-  padding: 0.375rem 0.875rem;
-  font-size: 0.875rem;
-  font-weight: var(--font-weight-semibold);
-  color: var(--color-white);
-  background-color: var(--color-primary);
-  border-radius: var(--radius-sm);
-  margin-bottom: var(--spacing-md);
+.intro__portrait img {
+  position: relative;
+  z-index: 1;
+  display: block;
+  width: 100%;
+  height: auto;
+  /* The source photo is cropped at the waist; a short fade on that edge only
+     keeps the cut from reading as a hard horizontal line across the grid. */
+  -webkit-mask-image: linear-gradient(to bottom, #000 86%, transparent 100%);
+  mask-image: linear-gradient(to bottom, #000 86%, transparent 100%);
 }
 
-.featured-project__title {
-  font-size: 2.5rem;
-  margin-bottom: var(--spacing-sm);
-}
-
-.featured-project__tagline {
-  font-size: 1.25rem;
-  color: var(--color-text-secondary);
-  margin-bottom: var(--spacing-xl);
-}
-
-.featured-project__section {
-  margin-bottom: var(--spacing-lg);
-}
-
-.featured-project__section h3 {
-  font-size: 1.25rem;
-  margin-bottom: var(--spacing-sm);
-}
-
-.featured-project__section p {
-  color: var(--color-text-secondary);
-  line-height: 1.8;
-}
-
-.featured-project__section ul {
-  list-style: disc;
-  padding-left: var(--spacing-lg);
-  color: var(--color-text-secondary);
-}
-
-.featured-project__section li {
-  margin-bottom: var(--spacing-xs);
-  line-height: 1.7;
-}
-
-.featured-project__tech {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--spacing-xs);
-  margin-bottom: var(--spacing-lg);
-}
-
-.tech-badge {
-  padding: 0.5rem 1rem;
-  font-size: 0.875rem;
-  font-weight: var(--font-weight-medium);
-  color: var(--color-white);
-  background-color: #0d6346;
-  border-radius: var(--radius-sm);
-  border: 1px solid #0d6346;
-}
-
-.featured-project__link {
-  display: inline-block;
-  font-weight: var(--font-weight-medium);
-  color: var(--color-primary);
-  transition: color var(--transition-base);
-}
-
-.featured-project__link:hover {
-  color: var(--color-primary-dark);
-}
-
-.projects-list {
+.intro__mark {
+  position: absolute;
+  z-index: 2;
   display: grid;
-  gap: var(--spacing-xl);
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: var(--r-sm);
+  background-color: var(--ground);
+  color: var(--accent-ink);
+  box-shadow: var(--lift-sm);
 }
 
-.project-item {
-  padding: var(--spacing-xl);
-  background-color: var(--color-white);
-  border: 2px solid var(--color-border);
-  border-radius: var(--radius-lg);
-  transition: all var(--transition-base);
+.intro__mark--brace    { right: -2%; top: 10%;   transform: rotate(8deg); }
+.intro__mark--arrow    { left: -4%;  top: 44%;   transform: rotate(-6deg); }
+.intro__mark--terminal { right: 4%;  bottom: 12%; transform: rotate(-9deg); }
+
+@media (prefers-reduced-motion: no-preference) {
+  .intro__mark { animation: drift 7.5s ease-in-out infinite; }
+  .intro__mark--arrow    { animation-delay: -2.4s; }
+  .intro__mark--terminal { animation-delay: -4.9s; }
 }
 
-.project-item:hover {
-  transform: translateX(8px);
-  box-shadow: var(--shadow-lg);
-  border-color: var(--color-primary);
+.pill-badge {
+  display: inline-block;
+  padding: 0.4rem 1rem;
+  border-radius: var(--r-pill);
+  background-color: var(--accent);
+  color: var(--ink);
+  font-size: 0.75rem;
+  font-weight: var(--w-bold);
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  box-shadow: var(--lift-sm);
 }
 
-.project-item__title {
-  font-size: 1.75rem;
-  margin-bottom: var(--spacing-sm);
+.intro__title {
+  font-family: var(--font-display);
+  font-weight: var(--w-black);
+  font-variation-settings: 'opsz' 144;
+  font-size: clamp(1.9rem, 4vw, 3.15rem);
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  margin: var(--s-md) 0 var(--s-sm);
 }
 
-.project-item__description {
-  color: var(--color-text-secondary);
+/* Inverts with the theme on its own: ink on ground in light, the reverse in
+   dark, so it stays the loudest word in the sentence either way. */
+.chip {
+  display: inline-block;
+  padding: 0 0.4em 0.06em;
+  border-radius: var(--r-pill);
+  background-color: var(--ink);
+  color: var(--ground);
+}
+
+.intro__text {
+  font-size: 1rem;
   line-height: 1.8;
-  margin-bottom: var(--spacing-md);
+  color: var(--ink-soft);
+  max-width: 54ch;
 }
 
-.project-item__tech {
+/* --- Stack tiles ----------------------------------------------------------- */
+
+.stack {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(104px, 100%), 1fr));
+  gap: var(--s-sm);
+  margin-top: var(--s-lg);
+}
+
+.stack__item {
+  /* Overridden per tile by an inline --pct; the fallback keeps the bar empty
+     rather than full if a tile ever ships without one. */
+  --pct: 0%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  padding: var(--s-md) var(--s-sm);
+  border-radius: 30px;
+  background-color: var(--ground);
+  box-shadow: var(--lift-md);
+  transition: box-shadow var(--t-base), transform var(--t-base);
+}
+
+.stack__item:hover {
+  box-shadow: var(--lift-lg);
+  transform: translateY(-4px);
+}
+
+/* Brand marks carry their own colours, so the tile stays a neutral dark disc
+   in both themes rather than tinting them. */
+.stack__icon {
+  display: grid;
+  place-items: center;
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  background-color: #101215;
+  box-shadow: var(--lift-sm);
+}
+
+.stack__name {
+  font-size: 0.8125rem;
+  font-weight: var(--w-semi);
+  color: var(--ink-soft);
+}
+
+.stack__pct {
+  font-family: var(--font-display);
+  font-weight: var(--w-black);
+  font-variation-settings: 'opsz' 40;
+  font-size: 1.125rem;
+  line-height: 1;
+}
+
+.stack__bar {
+  width: 68%;
+  height: 5px;
+  border-radius: var(--r-pill);
+  background-color: var(--ground);
+  box-shadow: var(--sink-sm);
+  overflow: hidden;
+}
+
+.stack__bar i {
+  display: block;
+  width: 0;
+  height: 100%;
+  border-radius: var(--r-pill);
+  background-color: var(--accent);
+  transition: width .9s cubic-bezier(.2, .7, .3, 1) .15s;
+}
+
+/* Fills only once the tile has scrolled in, so the number and the bar agree. */
+.stack__item.is-revealed .stack__bar i { width: var(--pct); }
+
+.reduced-motion .stack__bar i { width: var(--pct); }
+
+/* --- Card grids ----------------------------------------------------------- */
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(290px, 100%), 1fr));
+  gap: var(--s-lg);
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  padding: var(--s-lg);
+  border-radius: var(--r-lg);
+  background-color: var(--ground);
+  box-shadow: var(--lift-md);
+  transition: box-shadow var(--t-base), transform var(--t-base);
+}
+
+.card:hover {
+  box-shadow: var(--lift-lg);
+  transform: translateY(-3px);
+}
+
+.card__icon {
+  display: grid;
+  place-items: center;
+  width: 54px;
+  height: 54px;
+  margin-bottom: var(--s-md);
+  border-radius: var(--r-md);
+  background-color: var(--accent);
+  color: var(--ink);
+  box-shadow: var(--lift-sm);
+}
+
+.card__title {
+  font-size: 1.1875rem;
+  font-weight: var(--w-bold);
+  margin-bottom: var(--s-xs);
+}
+
+.card__text {
+  font-size: 0.9375rem;
+  color: var(--ink-soft);
+  line-height: 1.7;
+}
+
+.card__list {
+  margin-top: var(--s-sm);
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.card__list li {
+  position: relative;
+  padding-left: 1.1rem;
+  font-size: 0.9375rem;
+  color: var(--ink-soft);
+}
+
+.card__list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.62em;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: var(--accent-deep);
+}
+
+/* --- Tags ----------------------------------------------------------------- */
+
+.tags {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--spacing-xs);
-  margin-bottom: var(--spacing-md);
+  gap: 0.45rem;
+  margin-top: var(--s-md);
 }
 
-.project-item__link {
-  font-weight: var(--font-weight-medium);
-  color: var(--color-primary);
-  transition: color var(--transition-base);
+.tag {
+  padding: 0.35rem 0.85rem;
+  border-radius: var(--r-pill);
+  background-color: var(--ground);
+  box-shadow: var(--sink-sm);
+  font-size: 0.8125rem;
+  font-weight: var(--w-semi);
+  color: var(--ink-soft);
 }
 
-.project-item__link:hover {
-  color: var(--color-primary-dark);
+/* --- Inline action link ---------------------------------------------------- */
+
+.action-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.9375rem;
+  font-weight: var(--w-bold);
+  color: var(--accent-ink);
+  transition: color var(--t-base);
 }
 
+.action-link:hover { color: var(--ink); }
 
-/* ==========================================
-   Contact Page
-   ========================================== */
-
-.contact-content {
-  max-width: 800px;
-  margin: 0 auto;
-}
-
-.contact-intro {
-  text-align: center;
-  margin-bottom: var(--spacing-3xl);
-}
-
-.contact-intro__text {
-  font-size: 1.125rem;
-  color: var(--color-text-secondary);
-  line-height: 1.8;
-  max-width: 600px;
-  margin: 0 auto;
-}
+/* --- Contact -------------------------------------------------------------- */
 
 .contact-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: var(--spacing-lg);
-  margin-bottom: var(--spacing-3xl);
+  grid-template-columns: repeat(auto-fit, minmax(min(250px, 100%), 1fr));
+  gap: var(--s-lg);
+  margin-bottom: var(--s-2xl);
 }
 
 .contact-card {
-  padding: var(--spacing-xl);
-  background-color: var(--color-white);
-  border: 2px solid var(--color-border);
-  border-radius: var(--radius-lg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   text-align: center;
-  transition: all var(--transition-base);
-  cursor: pointer;
+  padding: var(--s-xl) var(--s-lg);
+  border-radius: var(--r-lg);
+  background-color: var(--ground);
+  box-shadow: var(--lift-md);
+  transition: box-shadow var(--t-base), transform var(--t-base);
 }
 
 .contact-card:hover {
-  transform: translateY(-8px);
-  box-shadow: var(--shadow-xl);
-  border-color: var(--color-primary);
+  box-shadow: var(--lift-lg);
+  transform: translateY(-3px);
 }
 
-.contact-card__icon {
-  width: 64px;
-  height: 64px;
-  margin: 0 auto var(--spacing-md);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: linear-gradient(135deg, var(--color-primary) 0%, #0d6346 100%);
-  border-radius: var(--radius-md);
-  color: var(--color-white);
-}
-
-.contact-card__title {
-  font-size: 1.25rem;
-  margin-bottom: var(--spacing-xs);
-}
-
-.contact-card__detail {
-  color: var(--color-text-secondary);
-  margin-bottom: var(--spacing-sm);
-}
-
-.contact-card__action {
-  display: inline-block;
+.contact-card__value {
   font-size: 0.9375rem;
-  font-weight: var(--font-weight-medium);
-  color: var(--color-primary);
+  color: var(--ink-soft);
+  margin: 0.15rem 0 var(--s-sm);
+  word-break: break-word;
 }
 
-.contact-footer {
-  text-align: center;
-  padding-top: var(--spacing-xl);
-  border-top: 1px solid var(--color-border);
-}
-
-.contact-footer p {
-  color: var(--color-text-secondary);
-  margin-bottom: var(--spacing-xs);
-}
-
-/* ==========================================
+/* ==========================================================================
    Footer
-   ========================================== */
+   ========================================================================== */
 
 .footer {
-  padding: var(--spacing-xl) var(--spacing-lg);
-  background-color: var(--color-bg-secondary);
-  border-top: 1px solid var(--color-border);
+  padding: var(--s-2xl) var(--s-lg) var(--s-xl);
+  background-color: var(--ground);
 }
 
 .footer__container {
   max-width: var(--max-width);
   margin: 0 auto;
-  text-align: center;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s-md);
+  padding-top: var(--s-lg);
+  box-shadow: inset 0 1px 0 var(--relief-dark), inset 0 2px 0 var(--relief-light);
 }
 
-.footer__logo {
-  color: var(--color-primary);
-  margin-bottom: var(--spacing-sm);
+.footer__word {
+  font-family: var(--font-display);
+  font-weight: var(--w-black);
+  font-variation-settings: 'opsz' 144;
+  font-size: 1.75rem;
+  letter-spacing: -0.03em;
 }
 
-.footer__text {
+.footer__note {
   font-size: 0.875rem;
-  color: var(--color-text-muted);
-  margin-bottom: 0;
+  color: var(--ink-muted);
 }
 
-/* ==========================================
-   Responsive Design
-   ========================================== */
+.footer__social {
+  display: flex;
+  gap: 0.6rem;
+}
 
-@media (max-width: 968px) {
-  .hero__content-grid {
-    grid-template-columns: 1fr;
-    gap: var(--spacing-2xl);
+.footer__social a {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--r-pill);
+  background-color: var(--ground);
+  color: var(--ink-soft);
+  box-shadow: var(--lift-sm);
+  transition: box-shadow var(--t-base), color var(--t-base);
+}
+
+.footer__social a:hover {
+  color: var(--accent-ink);
+  box-shadow: var(--lift-md);
+}
+
+.footer__social a:active { box-shadow: var(--sink-sm); }
+
+/* ==========================================================================
+   Language switcher
+   Three fixed codes, so a segmented control beats a dropdown - one tap, and
+   the current language is always on screen rather than hidden behind a menu.
+   ========================================================================== */
+
+.lang {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  padding: 3px;
+  border-radius: var(--r-pill);
+  background-color: var(--ground);
+  box-shadow: var(--sink-sm);
+}
+
+.lang__btn {
+  padding: 0.32rem 0.6rem;
+  border-radius: var(--r-pill);
+  font-size: 0.75rem;
+  font-weight: var(--w-bold);
+  letter-spacing: 0.06em;
+  color: var(--ink-muted);
+  transition: color var(--t-base), box-shadow var(--t-base), background-color var(--t-base);
+}
+
+.lang__btn:hover { color: var(--ink); }
+
+.lang__btn[aria-pressed="true"] {
+  background-color: var(--accent);
+  color: var(--ink);
+  box-shadow: var(--lift-sm);
+}
+
+/* ==========================================================================
+   Work cards
+   ========================================================================== */
+
+.work-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(330px, 100%), 1fr));
+  gap: var(--s-lg);
+}
+
+.work {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border-radius: var(--r-lg);
+  background-color: var(--ground);
+  box-shadow: var(--lift-md);
+  transition: box-shadow var(--t-base), transform var(--t-base);
+}
+
+/* The featured item runs the full width with the media beside the text. */
+.work--featured {
+  grid-column: 1 / -1;
+  flex-direction: row;
+  align-items: stretch;
+}
+
+.work--featured .work__media {
+  flex: 0 0 42%;
+  aspect-ratio: auto;
+}
+
+.work__media {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  background-color: var(--ground);
+  box-shadow: var(--sink-sm);
+}
+
+.work__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--t-slow);
+}
+
+.work:hover .work__media img { transform: scale(1.04); }
+
+/* Stand-in used until a real screenshot exists: the project's initials set in
+   the display face over the same ruled ground as the hero. Deliberately not a
+   stock illustration - it is the type system, not a picture of nothing. */
+.work__plate {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  background-image:
+    linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
+  background-size: 34px 34px;
+}
+
+.work__plate span {
+  font-family: var(--font-display);
+  font-weight: var(--w-black);
+  font-variation-settings: 'opsz' 144;
+  font-size: clamp(2.5rem, 7vw, 4rem);
+  letter-spacing: -0.04em;
+  color: var(--accent);
+  transition: transform var(--t-slow);
+}
+
+.work:hover .work__plate span { transform: scale(1.06); }
+
+.work__body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: var(--s-lg);
+}
+
+.work__badge {
+  align-self: flex-start;
+  padding: 0.28rem 0.8rem;
+  margin-bottom: var(--s-sm);
+  border-radius: var(--r-pill);
+  background-color: var(--accent);
+  color: var(--ink);
+  font-size: 0.6875rem;
+  font-weight: var(--w-bold);
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+}
+
+.work__title {
+  font-family: var(--font-display);
+  font-weight: var(--w-bold);
+  font-variation-settings: 'opsz' 60;
+  font-size: clamp(1.375rem, 2.4vw, 1.875rem);
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  margin-bottom: 0.3rem;
+}
+
+.work__tagline {
+  font-size: 0.9375rem;
+  font-weight: var(--w-semi);
+  color: var(--accent-ink);
+  margin-bottom: var(--s-sm);
+}
+
+.work__desc {
+  font-size: 0.9375rem;
+  line-height: 1.72;
+  color: var(--ink-soft);
+}
+
+.work__list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  margin-top: var(--s-sm);
+}
+
+.work__list li {
+  position: relative;
+  padding-left: 1.1rem;
+  font-size: 0.9375rem;
+  line-height: 1.7;
+  color: var(--ink-soft);
+}
+
+.work__list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.66em;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: var(--accent-deep);
+}
+
+/* Links sit at the card foot, pinned there by the auto margin so cards of
+   different text lengths still line their actions up. */
+.work__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-xs);
+  margin-top: auto;
+  padding-top: var(--s-md);
+}
+
+.work__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.5rem 1rem;
+  border-radius: var(--r-pill);
+  background-color: var(--ground);
+  box-shadow: var(--lift-sm);
+  font-size: 0.8125rem;
+  font-weight: var(--w-bold);
+  color: var(--ink);
+  transition: box-shadow var(--t-base), color var(--t-base), transform var(--t-base);
+}
+
+.work__link:hover {
+  color: var(--accent-ink);
+  box-shadow: var(--lift-md);
+  transform: translateY(-2px);
+}
+
+.work__link:active {
+  box-shadow: var(--sink-sm);
+  transform: translateY(1px);
+}
+
+.work__link svg { transition: transform var(--t-base); }
+.work__link:hover svg { transform: translate(2px, -2px); }
+
+/* ==========================================================================
+   Hover treatment shared by every raised card
+   A hairline of accent traced round the outside, plus a wipe across the top.
+   The ring is drawn with an inset shadow so it costs no layout and cannot
+   nudge the card by a pixel on hover.
+   ========================================================================== */
+
+.card,
+.work,
+.contact-card {
+  position: relative;
+}
+
+.card::before,
+.work::before,
+.contact-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  border-radius: inherit;
+  box-shadow: inset 0 0 0 0 var(--accent);
+  transition: box-shadow var(--t-base);
+}
+
+.card:hover::before,
+.work:hover::before,
+.contact-card:hover::before,
+.card:focus-visible::before,
+.work:focus-within::before,
+.contact-card:focus-visible::before {
+  box-shadow: inset 0 0 0 2px var(--accent);
+}
+
+.card::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 3;
+  width: 100%;
+  height: 3px;
+  background-color: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform var(--t-slow);
+}
+
+.card:hover::after { transform: scaleX(1); }
+
+.card { overflow: hidden; }
+
+/* The icon tile presses into the surface as the card lifts off it - the two
+   moving opposite ways is what sells the relief. */
+.card__icon {
+  transition: box-shadow var(--t-base), transform var(--t-base),
+              background-color var(--t-base);
+}
+
+.card:hover .card__icon,
+.contact-card:hover .card__icon {
+  box-shadow: var(--sink-sm);
+  background-color: var(--accent-bright);
+  transform: rotate(-5deg) scale(1.06);
+}
+
+.work:hover,
+.card:hover,
+.contact-card:hover {
+  transform: translateY(-4px);
+}
+
+/* ==========================================================================
+   Responsive
+   ========================================================================== */
+
+@media (max-width: 1080px) {
+  .hero__stage {
+    grid-template-columns: minmax(0, 1fr) minmax(240px, 320px) minmax(0, .85fr);
+    column-gap: var(--s-lg);
+    min-height: 500px;
   }
-  
-  .hero__image-container {
-    order: -1;
-  }
-  
-  .about-grid {
-    grid-template-columns: 1fr;
+
+  .hero__first,
+  .hero__last { font-size: clamp(2.75rem, 7.6vw, 5.5rem); }
+
+  .hero__mark--brackets,
+  .hero__mark--terminal { display: none; }
+
+  .about-grid { grid-template-columns: 1fr; }
+
+  .profile-card {
+    position: static;
+    max-width: 340px;
   }
 }
 
-@media (max-width: 768px) {
-  html { font-size: 14px; }
-  
-  .nav__links { gap: var(--spacing-md); }
-  .nav__link { font-size: 0.875rem; }
-  
-  .hero__title { font-size: 2.5rem; }
-  .hero__actions { flex-direction: column; width: 100%; }
-  .btn { width: 100%; text-align: center; }
-  
-  .page__title { font-size: 2.25rem; }
-  
-  .skills-grid { grid-template-columns: 1fr; }
-  .contact-grid { grid-template-columns: 1fr; }
-  
-  .timeline::before { left: 6px; }
-  .timeline-item { padding-left: var(--spacing-xl); }
-  .timeline-item__marker { left: 0; }
+/* Nav collapses and the hero unstacks into a single column. */
+@media (max-width: 900px) {
+  .nav__burger { display: grid; }
+
+  .nav__links {
+    position: absolute;
+    top: calc(var(--nav-height) - 14px);
+    right: var(--s-md);
+    left: auto;
+    min-width: 190px;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 2px;
+    padding: 0.45rem;
+    border-radius: var(--r-md);
+    background-color: var(--ground);
+    box-shadow: var(--lift-lg);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-8px);
+    transition: opacity var(--t-base), transform var(--t-base), visibility var(--t-base);
+  }
+
+  .nav__links.is-open {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+
+  .nav__link {
+    text-align: left;
+    padding: 0.55rem 0.85rem;
+    border-radius: var(--r-sm);
+  }
+
+  .nav__cta {
+    text-align: center;
+    margin-top: 0.3rem;
+    padding: 0.6rem 1rem;
+  }
+
+  .hero {
+    min-height: 0;
+    padding-bottom: var(--s-2xl);
+  }
+
+  .hero__stage {
+    grid-template-columns: 1fr;
+    row-gap: var(--s-lg);
+    min-height: 0;
+  }
+
+  .hero__name { display: flex; flex-direction: column; }
+
+  /* Surname rejoins the flow instead of floating over the portrait. */
+  .hero__last {
+    position: static;
+    align-self: flex-start;
+  }
+
+  .hero__first,
+  .hero__last { font-size: clamp(2.75rem, 13vw, 5rem); }
+
+  .hero__portrait {
+    order: 3;
+    max-width: 300px;
+    justify-self: start;
+  }
+
+  .hero__col--right {
+    padding-bottom: 0;
+    order: 4;
+  }
+
+  .hero__tagline { max-width: 24ch; }
+
+  .hero__marks { display: none; }
+}
+
+/* Journey drops the winding road for a straight vertical one. Selectors are
+   prefixed with .journey__map so they match the specificity of the
+   nth-child rules above and win on source order. */
+@media (max-width: 900px) {
+  .journey__map {
+    aspect-ratio: auto;
+    max-width: 560px;
+  }
+
+  .journey__road { display: none; }
+
+  .journey__stops {
+    position: relative;
+    inset: auto;
+    display: flex;
+    flex-direction: column;
+    gap: var(--s-lg);
+  }
+
+  .journey__stops::before {
+    content: '';
+    position: absolute;
+    left: 6px;
+    top: 10px;
+    bottom: 10px;
+    width: 40px;
+    border-radius: 20px;
+    background-color: var(--road);
+  }
+
+  .journey__stops::after {
+    content: '';
+    position: absolute;
+    left: 25px;
+    top: 22px;
+    bottom: 22px;
+    width: 2px;
+    background-image: repeating-linear-gradient(
+      to bottom,
+      var(--road-dash) 0 12px,
+      transparent 12px 26px
+    );
+    opacity: .85;
+  }
+
+  .journey__map .journey__stop {
+    --center: 0px;
+    position: relative;
+    top: auto;
+    left: auto;
+    right: auto;
+    flex-direction: row;
+    padding: 0;
+    gap: var(--s-md);
+  }
+
+  .journey__map .journey__stop .journey__pin {
+    position: relative;
+    z-index: 1;
+    flex: 0 0 52px;
+    width: 52px;
+    height: 52px;
+    transform: rotate(-135deg);
+  }
+
+  .journey__map .journey__stop .journey__pin-num { transform: rotate(135deg); }
+
+  .journey__map .journey__stop .journey__card {
+    max-width: none;
+    text-align: left;
+  }
+}
+
+@media (max-width: 640px) {
+  html { font-size: 15px; }
+
+  .hero__container { padding: var(--s-xl) var(--s-md); }
+  .hero__portrait { max-width: 260px; }
+  .hero__social-link { width: 44px; height: 44px; }
+
+  .journey__container,
+  .page__container { padding: 0 var(--s-md); }
+
+  .panel,
+  .work__body { padding: var(--s-lg) var(--s-md); }
+
+  .btn { width: 100%; }
+
+  .hero__col--right .btn { width: auto; }
+
+  .footer__container {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+/* ==========================================================================
+   Reduced motion
+   Set by scripts/main.js on <html> so JS-driven reveals can opt out too,
+   with the media query as the no-JS fallback.
+   ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+.reduced-motion *,
+.reduced-motion *::before,
+.reduced-motion *::after {
+  animation-duration: .01ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: .01ms !important;
+  scroll-behavior: auto !important;
+}
+
+/* ==========================================================================
+   Reveal utility
+   Applied by scripts/main.js to [data-reveal] elements. The hidden state is
+   added by JS rather than declared here on purpose: if the script never
+   runs, the content stays visible instead of disappearing.
+   ========================================================================== */
+
+/* Uses the independent `translate` property rather than `transform`. Cards
+   own `transform` for their hover lift, and a resting `transform: none` here
+   would beat `.card:hover` on source order and cancel it. */
+.will-reveal {
+  opacity: 0;
+  translate: 0 22px;
+  transition: opacity .6s ease, translate .6s cubic-bezier(.2, .7, .3, 1);
+}
+
+.will-reveal.is-revealed {
+  opacity: 1;
+  translate: 0 0;
+}
+
+/* ==========================================================================
+   Responsive: components added after the main breakpoints above
+   ========================================================================== */
+
+@media (max-width: 900px) {
+  /* The featured card stops being side-by-side well before the grid does,
+     because its 42% media column starves the text of measure first. */
+  .work--featured { flex-direction: column; }
+
+  .work--featured .work__media {
+    flex: none;
+    aspect-ratio: 16 / 10;
+  }
+
+  /* Inside the collapsed menu the switcher is a full-width row of its own. */
+  .nav__links .lang {
+    justify-content: center;
+    margin-top: 0.35rem;
+  }
 }
 
 @media (max-width: 480px) {
-  .nav__container { padding: 0 var(--spacing-md); }
-  .nav__links { gap: var(--spacing-sm); }
-  .page__container { padding: var(--spacing-2xl) var(--spacing-md); }
+  /* Logo, theme, language and menu all have to share one 320px-wide row. */
+  .nav__container { padding: 0 var(--s-sm); gap: var(--s-xs); }
+  .nav__logo { width: 80px; height: 48px; }
+  .nav__actions { gap: 0.3rem; }
+
+  .lang { padding: 2px; }
+
+  .lang__btn {
+    padding: 0.3rem 0.42rem;
+    font-size: 0.6875rem;
+    letter-spacing: 0.02em;
+  }
+}
+
+@media (max-width: 640px) {
+  .work__body { padding: var(--s-md); }
+  .work__links { gap: 0.4rem; }
+  .work__link { flex: 1 1 auto; justify-content: center; }
+}
+
+/* Hover lifts are pointer affordances. On touch they fire on tap and stick,
+   so they are limited to devices that can actually hover. */
+@media (hover: none) {
+  .work:hover,
+  .card:hover,
+  .contact-card:hover { transform: none; }
+
+  .card:hover::after { transform: scaleX(0); }
+
+  .card:hover::before,
+  .work:hover::before,
+  .contact-card:hover::before { box-shadow: inset 0 0 0 0 var(--accent); }
+}
+
+@media (max-width: 900px) {
+  .intro {
+    grid-template-columns: 1fr;
+    gap: var(--s-lg);
+    margin-bottom: var(--s-3xl);
+  }
+
+  /* Statement first, portrait under it - the headline is the reason to stay. */
+  .intro__body { order: -1; }
+
+  .intro__portrait { max-width: 300px; }
+
+  .intro__mark--arrow { left: -4%; }
+}
+
+@media (max-width: 480px) {
+  .stack { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .intro__mark { display: none; }
+}
+
+/* ==========================================================================
+   Phone layout
+   Below the nav breakpoint the page reads as a single centred column. Long
+   prose stays left-aligned inside its centred block, because centred body
+   copy is markedly harder to read once it runs past a couple of lines.
+   ========================================================================== */
+
+@media (max-width: 900px) {
+  .hero__stage { justify-items: center; }
+
+  .hero__col--left,
+  .hero__col--right {
+    align-items: center;
+    text-align: center;
+  }
+
+  .hero__name { align-items: center; }
+
+  .hero__social { justify-content: center; }
+
+  .hero__portrait { justify-self: center; }
+
+  .hero__tagline { max-width: 22ch; }
+
+  /* The pointer exists to aim at the badge from the side. Once the column is
+     centred the badge sits directly under the name and needs no pointer, and
+     a detached curve just reads as a stray mark. */
+  .hero__role { padding-left: 0; }
+
+  .hero__arrow { display: none; }
+
+  .page__head,
+  .journey__head {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .page__intro { margin-left: auto; margin-right: auto; }
+
+  .intro__body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .intro__text { text-align: left; }
+
+  .quote-box,
+  .panel { text-align: left; }
+}
+
+@media (max-width: 640px) {
+  .work__body { align-items: flex-start; }
+
+  /* Card actions stretch to the full width so they are easy to hit. */
+  .work__links { width: 100%; }
 }

@@ -1,0 +1,23 @@
+# Editor and IDE
+.vscode/
+.idea/
+*.code-workspace
+
+# OS cruft
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+.DS_Store
+._*
+
+# Dependencies and build output, should any get added later
+node_modules/
+dist/
+build/
+.cache/
+
+# Local env and secrets - never commit these
+.env
+.env.*
+*.pem
+*.key

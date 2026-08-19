@@ -1,48 +1,66 @@
-// ==========================================
-// Dark/Light Mode Toggle
-// ==========================================
+/* ==========================================================================
+   Theme toggle
 
-const themeToggle = document.getElementById('themeToggle');
-const html = document.documentElement;
+   The initial theme is applied by a small inline script in each page head so
+   the correct ground colour is painted on the first frame. This file only
+   owns the button and the system-preference listener.
+   ========================================================================== */
 
-// Check for saved theme preference or default to light mode
-const currentTheme = localStorage.getItem('theme') || 'light';
+(function () {
+  'use strict';
 
-// Apply theme on page load
-html.setAttribute('data-theme', currentTheme);
+  var root = document.documentElement;
+  var toggle = document.getElementById('themeToggle');
 
-// Toggle theme function
-function toggleTheme() {
-  const current = html.getAttribute('data-theme');
-  const next = current === 'light' ? 'dark' : 'light';
-  
-  html.setAttribute('data-theme', next);
-  localStorage.setItem('theme', next);
-  
-  // Optional: Add haptic feedback for supported devices
-  if (navigator.vibrate) {
-    navigator.vibrate(10);
+  var currentTheme = function () {
+    return root.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
+  };
+
+  var applyTheme = function (theme, persist) {
+    root.setAttribute('data-theme', theme);
+    if (toggle) {
+      toggle.setAttribute('aria-pressed', String(theme === 'dark'));
+      /* Label comes from the translation layer when it is loaded, so the
+         button does not revert to English on click. */
+      var key = theme === 'dark' ? 'theme.toLight' : 'theme.toDark';
+      var fallback = theme === 'dark' ? 'Switch to light theme' : 'Switch to dark theme';
+      var label = typeof window.i18nText === 'function' ? window.i18nText(key) : null;
+      toggle.setAttribute('aria-label', label || fallback);
+    }
+    if (persist) {
+      try {
+        localStorage.setItem('theme', theme);
+      } catch (error) {
+        /* Private mode blocks writes. The theme still applies for this page. */
+      }
+    }
+  };
+
+  applyTheme(currentTheme(), false);
+
+  if (toggle) {
+    toggle.addEventListener('click', function () {
+      applyTheme(currentTheme() === 'dark' ? 'light' : 'dark', true);
+    });
   }
-}
 
-// Event listener
-themeToggle.addEventListener('click', toggleTheme);
+  /* Relabel when the language changes, since the name is language-dependent. */
+  document.addEventListener('languagechange', function () {
+    applyTheme(currentTheme(), false);
+  });
 
-// Keyboard accessibility
-themeToggle.addEventListener('keydown', (e) => {
-  if (e.key === 'Enter' || e.key === ' ') {
-    e.preventDefault();
-    toggleTheme();
+  /* Follow the OS only while the visitor has not made a choice of their own. */
+  var systemDark = window.matchMedia('(prefers-color-scheme: dark)');
+
+  if (typeof systemDark.addEventListener === 'function') {
+    systemDark.addEventListener('change', function (event) {
+      var stored = null;
+      try {
+        stored = localStorage.getItem('theme');
+      } catch (error) {
+        stored = null;
+      }
+      if (!stored) applyTheme(event.matches ? 'dark' : 'light', false);
+    });
   }
-});
-
-// Listen for system theme changes
-const darkModeQuery = window.matchMedia('(prefers-color-scheme: dark)');
-
-darkModeQuery.addEventListener('change', (e) => {
-  // Only auto-switch if user hasn't manually set a preference
-  if (!localStorage.getItem('theme')) {
-    const newTheme = e.matches ? 'dark' : 'light';
-    html.setAttribute('data-theme', newTheme);
-  }
-});
+})();

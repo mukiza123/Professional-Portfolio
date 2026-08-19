@@ -1,154 +1,178 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact | Lisette Mukiza</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Get in touch with Lisette Mukiza by email, LinkedIn or GitHub.">
+<title>Contact | Lisette Mukiza</title>
 
-    <link rel="stylesheet" href="styles/main.css">
-    <link rel="stylesheet" href="styles/themes.css">
+<script>
+/* Paint the stored theme before the first frame so the ground colour never
+   flashes from light to dark on load. */
+(function () {
+  try {
+    var stored = localStorage.getItem('theme');
+    if (!stored) {
+      stored = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    }
+    document.documentElement.setAttribute('data-theme', stored);
+  } catch (error) {
+    document.documentElement.setAttribute('data-theme', 'light');
+  }
+})();
+</script>
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400..900&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="styles/main.css">
+<link rel="stylesheet" href="styles/themes.css">
 </head>
 
 <body>
+<a class="skip-link" href="#main" data-i18n="skip">Skip to content</a>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <defs>
+        <path id="i-github" d="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.2.8-.6v-2c-3.2.7-3.9-1.5-3.9-1.5-.5-1.4-1.3-1.7-1.3-1.7-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.7 1.3 3.4 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.2 1.2a11 11 0 0 1 5.8 0c2.2-1.5 3.2-1.2 3.2-1.2.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.3c0 .4.2.7.8.6 4.6-1.5 7.9-5.8 7.9-10.9C23.5 5.7 18.3.5 12 .5z"/>
+        <path id="i-linkedin" d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM10 9h3.8v1.7h.1c.5-1 1.8-2 3.7-2 4 0 4.7 2.5 4.7 5.8V21h-4v-5.6c0-1.4 0-3.1-1.9-3.1s-2.2 1.5-2.2 3V21h-4z"/>
+        <g id="i-mail"><rect x="2.6" y="4.8" width="18.8" height="14.4" rx="2.2"/><path d="m3.4 6.6 8.6 6 8.6-6"/></g>
+        <g id="i-globe"><circle cx="12" cy="12" r="9.2"/><path d="M2.8 12h18.4M12 2.8c2.4 2.6 3.6 5.7 3.6 9.2s-1.2 6.6-3.6 9.2c-2.4-2.6-3.6-5.7-3.6-9.2S9.6 5.4 12 2.8z"/></g>
+        <path id="i-arrow-out" d="M7 17 17 7M8.5 7H17v8.5"/>
+    </defs>
+</svg>
+
 <nav class="nav">
     <div class="nav__container">
-        <a href="index.html" class="nav__logo" aria-label="Home">
-            <svg width="64" height="32" viewBox="-32 -16 64 32" xmlns="http://www.w3.org/2000/svg">
-                <path
-                    d="M -24 0 C -24 -10 -8 -10 0 0 C 8 10 24 10 24 0 C 24 -10 8 -10 0 0 C -8 10 -24 10 -24 0"
-                    fill="none"
-                    stroke="#0d6346"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                />
-            </svg>
-        </a>
+        <a href="index.html" class="nav__logo" aria-label="Lisette Mukiza, home"></a>
 
-        <div class="nav__links">
-            <a href="index.html" class="nav__link">Home</a>
-            <a href="about.html" class="nav__link">About</a>
-            <a href="skills.html" class="nav__link">Skills</a>
-            <a href="projects.html" class="nav__link">Projects</a>
-            <a href="contact.html" class="nav__link nav__link--active" aria-current="page">Contact</a>
+        <div class="nav__links" id="navLinks">
+            <a href="index.html" class="nav__link" data-nav="home" data-i18n="nav.home">Home</a>
+            <a href="about.html" class="nav__link" data-nav="about" data-i18n="nav.about">About</a>
+            <a href="skills.html" class="nav__link" data-nav="skills" data-i18n="nav.skills">Skills</a>
+            <a href="projects.html" class="nav__link" data-nav="projects" data-i18n="nav.projects">Projects</a>
+            <a href="contact.html" class="nav__cta" data-nav="contact" data-i18n="nav.contact" aria-current="page">Contact</a>
+        </div>
 
-            <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
-                <svg class="theme-toggle__icon" width="20" height="20" viewBox="0 0 20 20">
-                    <g class="sun">
-                        <circle cx="10" cy="10" r="3" stroke="currentColor" stroke-width="2" fill="none"/>
-                        <line x1="10" y1="1" x2="10" y2="3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                        <line x1="10" y1="17" x2="10" y2="19" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                        <line x1="17" y1="10" x2="19" y2="10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                        <line x1="1" y1="10" x2="3" y2="10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        <div class="nav__actions">
+            <button class="theme-toggle" id="themeToggle" type="button" data-i18n-aria="theme.toDark" aria-label="Switch to dark theme" aria-pressed="false">
+                <svg class="theme-toggle__icon" width="20" height="20" viewBox="0 0 20 20" aria-hidden="true">
+                    <g class="sun" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+                        <circle cx="10" cy="10" r="3.4"/>
+                        <path d="M10 1.6v2M10 16.4v2M18.4 10h-2M3.6 10h-2M15.9 4.1l-1.4 1.4M5.5 14.5l-1.4 1.4M15.9 15.9l-1.4-1.4M5.5 5.5 4.1 4.1"/>
                     </g>
-                    <path class="moon"
-                          d="M17 10.5C17 14.366 13.866 17.5 10 17.5C6.134 17.5 3 14.366 3 10.5C3 7.5 5 5 8 4C7 6 7 8 9 10C11 12 13 12 15 11C16 13.5 17 9 17 10.5Z"
-                          fill="currentColor"/>
+                    <path class="moon" d="M17.2 12.6A7.4 7.4 0 0 1 7.4 2.8a7.4 7.4 0 1 0 9.8 9.8z" fill="currentColor"/>
                 </svg>
+            </button>
+
+
+            <div class="lang" role="group" aria-label="Language">
+                <button class="lang__btn" type="button" data-lang="en" aria-pressed="true">EN</button>
+                <button class="lang__btn" type="button" data-lang="fr" aria-pressed="false">FR</button>
+                <button class="lang__btn" type="button" data-lang="rw" aria-pressed="false">RW</button>
+            </div>
+
+            <button class="nav__burger" id="navBurger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks">
+                <span></span><span></span><span></span>
             </button>
         </div>
     </div>
 </nav>
 
-<main class="page">
+<main class="page" id="main">
     <div class="page__container">
-        <div class="contact-content">
 
-            <div class="contact-intro">
-                <h1 class="page__title">Let’s Connect</h1>
-                <p class="contact-intro__text">
-                    Open to discussions around systems engineering, infrastructure projects,
-                    and opportunities to build meaningful software. Whether it’s a technical
-                    question, collaboration, or a professional connection, I’m open to it.
-                </p>
-            </div>
+        <div class="page__head">
+            <p class="eyebrow" data-i18n="contact.eyebrow">Contact</p>
+            <h1 class="page__title" data-i18n="contact.title">Let&rsquo;s talk</h1>
+            <p class="page__intro" data-i18n="contact.intro">
+                Open to internships, collaborations and engineering work, particularly anything
+                sitting at the intersection of education and technology. The fastest way to
+                reach me is email.
+            </p>
+        </div>
 
-            <div class="contact-grid">
+        <div class="contact-grid">
 
-                <a href="mailto:mukizalisette@gmail.com" class="contact-card">
-                    <div class="contact-card__icon">
-                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
-                            <rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="2"/>
-                            <path d="M3 7L12 13L21 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                        </svg>
-                    </div>
-                    <h2 class="contact-card__title">Email</h2>
-                    <p class="contact-card__detail">mukizalisette@gmail.com</p>
-                    <span class="contact-card__action">Send a message →</span>
-                </a>
+            <a class="contact-card" href="mailto:mukizalisette@gmail.com" data-reveal>
+                <span class="card__icon" aria-hidden="true">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><use href="#i-mail"/></svg>
+                </span>
+                <h2 class="card__title" data-i18n="contact.email">Email</h2>
+                <p class="contact-card__value">mukizalisette@gmail.com</p>
+                <span class="action-link" data-i18n="contact.emailAction">Send a message</span>
+            </a>
 
-                <a href="https://github.com/lisette-lachiever" class="contact-card" target="_blank" rel="noopener">
-                    <div class="contact-card__icon">
-                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
-                            <path d="M12 2C6.477 2 2 6.477 2 12C2 16.418 4.865 20.166 8.839 21.489C9.339 21.579 9.521 21.267 9.521 21C9.521 20.766 9.513 20.15 9.508 19.326C6.726 19.933 6.139 18.002 6.139 18.002C5.685 16.846 5.029 16.535 5.029 16.535C4.121 15.913 5.098 15.925 5.098 15.925C6.101 15.997 6.629 16.961 6.629 16.961C7.521 18.508 8.97 18.067 9.539 17.811C9.631 17.163 9.889 16.722 10.175 16.472C7.955 16.222 5.62 15.362 5.62 11.511C5.62 10.415 6.01 9.52 6.649 8.816C6.546 8.563 6.203 7.543 6.747 6.162C6.747 6.162 7.586 5.891 9.497 7.188C10.31 6.968 11.16 6.858 12.01 6.854C12.86 6.858 13.71 6.968 14.524 7.188C16.434 5.891 17.272 6.162 17.272 6.162C17.817 7.543 17.474 8.563 17.371 8.816C18.011 9.52 18.399 10.415 18.399 11.511C18.399 15.372 16.06 16.218 13.833 16.465C14.192 16.779 14.512 17.396 14.512 18.338C14.512 19.694 14.501 20.786 14.501 21C14.501 21.269 14.681 21.584 15.188 21.488C19.165 20.163 22 16.417 22 12C22 6.477 17.523 2 12 2Z"
-                                  fill="currentColor"/>
-                        </svg>
-                    </div>
-                    <h2 class="contact-card__title">GitHub</h2>
-                    <p class="contact-card__detail">@lisette-lachiever</p>
-                    <span class="contact-card__action">View projects →</span>
-                </a>
+            <a class="contact-card" href="https://linkedin.com/in/lisette-mukiza" target="_blank" rel="noopener noreferrer" data-reveal>
+                <span class="card__icon" aria-hidden="true">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><use href="#i-linkedin"/></svg>
+                </span>
+                <h2 class="card__title">LinkedIn</h2>
+                <p class="contact-card__value">in/lisette-mukiza</p>
+                <span class="action-link" data-i18n="contact.linkedinAction">Connect</span>
+            </a>
 
-                <a href="https://www.linkedin.com/in/lisette-mukiza/" class="contact-card" target="_blank" rel="noopener">
-                    <div class="contact-card__icon">
-                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
-                            <rect x="2" y="2" width="20" height="20" rx="2" stroke="currentColor" stroke-width="2"/>
-                            <path d="M8 11V16M8 8V8.01M12 16V11M16 16V13C16 11.8954 15.1046 11 14 11C12.8954 11 12 11.8954 12 13"
-                                  stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                        </svg>
-                    </div>
-                    <h2 class="contact-card__title">LinkedIn</h2>
-                    <p class="contact-card__detail">lisette-mukiza</p>
-                    <span class="contact-card__action">Connect professionally →</span>
-                </a>
-
-                <a href="assets/Lisette_Mukiza_CV.pdf" class="contact-card" download>
-                    <div class="contact-card__icon">
-                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
-                            <path d="M14 2H6C4.89543 2 4 2.89543 4 4V20C4 21.1046 4.89543 22 6 22H18C19.1046 22 20 21.1046 20 20V8L14 2Z"
-                                  stroke="currentColor" stroke-width="2"/>
-                            <path d="M14 2V8H20" stroke="currentColor" stroke-width="2"/>
-                            <path d="M12 18V12M12 12L10 14M12 12L14 14"
-                                  stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                        </svg>
-                    </div>
-                    <h2 class="contact-card__title">Resume</h2>
-                    <p class="contact-card__detail">PDF Download</p>
-                    <span class="contact-card__action">Download resume →</span>
-                </a>
-
-            </div>
-
-            <div class="contact-footer">
-                <p>Based in <strong>Pamplemousses, Mauritius</strong></p>
-                <p>Available for internships and collaborative projects</p>
-            </div>
+            <a class="contact-card" href="https://github.com/lisette-lachiever" target="_blank" rel="noopener noreferrer" data-reveal>
+                <span class="card__icon" aria-hidden="true">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><use href="#i-github"/></svg>
+                </span>
+                <h2 class="card__title">GitHub</h2>
+                <p class="contact-card__value">lisette-lachiever</p>
+                <span class="action-link" data-i18n="contact.githubAction">See the code</span>
+            </a>
 
         </div>
+
+        <div class="panel" data-reveal>
+            <h2 class="panel__title" data-i18n="contact.elsewhereTitle">Elsewhere</h2>
+            <p data-i18n="contact.elsewhere">Based in Beau Plan, Pamplemousses, Mauritius. Portfolio and live builds are at mukiza.tech, and my CV is available below.</p>
+
+            <div class="work__links">
+                <a class="work__link" href="assets/Lisette_Mukiza_CV.pdf" download>
+                    <span data-i18n="contact.cv">Download CV</span>
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M12 3.5v12M7.5 11.5 12 16l4.5-4.5M4.5 19.5h15"/>
+                    </svg>
+                </a>
+                <a class="work__link" href="https://mukiza.tech" target="_blank" rel="noopener noreferrer">
+                    mukiza.tech
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-arrow-out"/></svg>
+                </a>
+            </div>
+        </div>
+
     </div>
 </main>
 
 <footer class="footer">
     <div class="footer__container">
-        <svg width="64" height="32" viewBox="-32 -16 64 32" xmlns="http://www.w3.org/2000/svg">
-            <path
-                d="M -24 0 C -24 -10 -8 -10 0 0 C 8 10 24 10 24 0 C 24 -10 8 -10 0 0 C -8 10 -24 10 -24 0"
-                fill="none"
-                stroke="#0d6346"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-            />
-        </svg>
-        <p class="footer__text">Learning to build systems that scale and serve.</p>
+        <span class="footer__word">Lisette Mukiza</span>
+
+        <ul class="footer__social">
+            <li>
+                <a href="https://github.com/lisette-lachiever" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><use href="#i-github"/></svg>
+                </a>
+            </li>
+            <li>
+                <a href="https://linkedin.com/in/lisette-mukiza" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><use href="#i-linkedin"/></svg>
+                </a>
+            </li>
+            <li>
+                <a href="mailto:mukizalisette@gmail.com" aria-label="Email">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" aria-hidden="true"><use href="#i-mail"/></svg>
+                </a>
+            </li>
+        </ul>
+
+        <p class="footer__note" data-i18n="footer.note">Built from scratch. No template.</p>
     </div>
 </footer>
 
-<script src="scripts/main.js"></script>
+<script src="scripts/i18n.js"></script>
 <script src="scripts/theme-toggle.js"></script>
+<script src="scripts/main.js"></script>
 </body>
 </html>

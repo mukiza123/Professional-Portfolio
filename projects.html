@@ -1,193 +1,333 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Projects | Lisette</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Projects by Lisette Mukiza: LearnPod, a campus intranet, an e-commerce platform, a grading system and more.">
+<title>Projects | Lisette Mukiza</title>
 
-    <link rel="stylesheet" href="styles/main.css">
-    <link rel="stylesheet" href="styles/themes.css">
+<script>
+/* Paint the stored theme before the first frame so the ground colour never
+   flashes from light to dark on load. */
+(function () {
+  try {
+    var stored = localStorage.getItem('theme');
+    if (!stored) {
+      stored = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    }
+    document.documentElement.setAttribute('data-theme', stored);
+  } catch (error) {
+    document.documentElement.setAttribute('data-theme', 'light');
+  }
+})();
+</script>
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400..900&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="styles/main.css">
+<link rel="stylesheet" href="styles/themes.css">
 </head>
 
 <body>
+<a class="skip-link" href="#main" data-i18n="skip">Skip to content</a>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <defs>
+        <path id="i-github" d="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.2.8-.6v-2c-3.2.7-3.9-1.5-3.9-1.5-.5-1.4-1.3-1.7-1.3-1.7-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.7 1.3 3.4 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.2 1.2a11 11 0 0 1 5.8 0c2.2-1.5 3.2-1.2 3.2-1.2.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.3c0 .4.2.7.8.6 4.6-1.5 7.9-5.8 7.9-10.9C23.5 5.7 18.3.5 12 .5z"/>
+        <path id="i-linkedin" d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM10 9h3.8v1.7h.1c.5-1 1.8-2 3.7-2 4 0 4.7 2.5 4.7 5.8V21h-4v-5.6c0-1.4 0-3.1-1.9-3.1s-2.2 1.5-2.2 3V21h-4z"/>
+        <g id="i-mail"><rect x="2.6" y="4.8" width="18.8" height="14.4" rx="2.2"/><path d="m3.4 6.6 8.6 6 8.6-6"/></g>
+        <g id="i-globe"><circle cx="12" cy="12" r="9.2"/><path d="M2.8 12h18.4M12 2.8c2.4 2.6 3.6 5.7 3.6 9.2s-1.2 6.6-3.6 9.2c-2.4-2.6-3.6-5.7-3.6-9.2S9.6 5.4 12 2.8z"/></g>
+        <path id="i-arrow-out" d="M7 17 17 7M8.5 7H17v8.5"/>
+    </defs>
+</svg>
+
 <nav class="nav">
     <div class="nav__container">
-        <a href="index.html" class="nav__logo" aria-label="Home">
-            <svg width="64" height="32" viewBox="-32 -16 64 32" xmlns="http://www.w3.org/2000/svg">
-                <path
-                    d="M -24 0 C -24 -10 -8 -10 0 0 C 8 10 24 10 24 0 C 24 -10 8 -10 0 0 C -8 10 -24 10 -24 0"
-                    fill="none"
-                    stroke="#0d6346"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                />
-            </svg>
-        </a>
+        <a href="index.html" class="nav__logo" aria-label="Lisette Mukiza, home"></a>
 
-        <div class="nav__links">
-            <a href="index.html" class="nav__link">Home</a>
-            <a href="about.html" class="nav__link">About</a>
-            <a href="skills.html" class="nav__link">Skills</a>
-            <a href="projects.html" class="nav__link nav__link--active" aria-current="page">Projects</a>
-            <a href="contact.html" class="nav__link">Contact</a>
+        <div class="nav__links" id="navLinks">
+            <a href="index.html" class="nav__link" data-nav="home" data-i18n="nav.home">Home</a>
+            <a href="about.html" class="nav__link" data-nav="about" data-i18n="nav.about">About</a>
+            <a href="skills.html" class="nav__link" data-nav="skills" data-i18n="nav.skills">Skills</a>
+            <a href="projects.html" class="nav__link nav__link--active" data-nav="projects" data-i18n="nav.projects" aria-current="page">Projects</a>
+            <a href="contact.html" class="nav__cta" data-nav="contact" data-i18n="nav.contact">Contact</a>
+        </div>
 
-            <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
-                <svg class="theme-toggle__icon" width="20" height="20" viewBox="0 0 20 20">
-                    <g class="sun">
-                        <circle cx="10" cy="10" r="3" stroke="currentColor" stroke-width="2" fill="none"/>
-                        <line x1="10" y1="1" x2="10" y2="3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                        <line x1="10" y1="17" x2="10" y2="19" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                        <line x1="17" y1="10" x2="19" y2="10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                        <line x1="1" y1="10" x2="3" y2="10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        <div class="nav__actions">
+            <button class="theme-toggle" id="themeToggle" type="button" data-i18n-aria="theme.toDark" aria-label="Switch to dark theme" aria-pressed="false">
+                <svg class="theme-toggle__icon" width="20" height="20" viewBox="0 0 20 20" aria-hidden="true">
+                    <g class="sun" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+                        <circle cx="10" cy="10" r="3.4"/>
+                        <path d="M10 1.6v2M10 16.4v2M18.4 10h-2M3.6 10h-2M15.9 4.1l-1.4 1.4M5.5 14.5l-1.4 1.4M15.9 15.9l-1.4-1.4M5.5 5.5 4.1 4.1"/>
                     </g>
-                    <path class="moon"
-                          d="M17 10.5C17 14.366 13.866 17.5 10 17.5C6.134 17.5 3 14.366 3 10.5C3 7.5 5 5 8 4C7 6 7 8 9 10C11 12 13 12 15 11C16 13.5 17 9 17 10.5Z"
-                          fill="currentColor"/>
+                    <path class="moon" d="M17.2 12.6A7.4 7.4 0 0 1 7.4 2.8a7.4 7.4 0 1 0 9.8 9.8z" fill="currentColor"/>
                 </svg>
+            </button>
+
+
+            <div class="lang" role="group" aria-label="Language">
+                <button class="lang__btn" type="button" data-lang="en" aria-pressed="true">EN</button>
+                <button class="lang__btn" type="button" data-lang="fr" aria-pressed="false">FR</button>
+                <button class="lang__btn" type="button" data-lang="rw" aria-pressed="false">RW</button>
+            </div>
+
+            <button class="nav__burger" id="navBurger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks">
+                <span></span><span></span><span></span>
             </button>
         </div>
     </div>
 </nav>
 
-<main class="page">
+<main class="page" id="main">
     <div class="page__container">
-        <h1 class="page__title">Projects</h1>
 
-        <!-- Featured Project -->
-        <article class="featured-project">
-            <span class="featured-project__badge">Featured</span>
-            <h2 class="featured-project__title">LearnPod</h2>
-            <p class="featured-project__tagline">
-                Offline-first learning prototype for low-resource and limited-connectivity environments
+        <div class="page__head">
+            <p class="eyebrow" data-i18n="projects.eyebrow">Projects</p>
+            <h1 class="page__title" data-i18n="projects.title">Things I built</h1>
+            <p class="page__intro" data-i18n="projects.intro">
+                Each of these started as a problem someone actually had. The write-ups keep the
+                constraints in, because the constraints are where the engineering happened.
             </p>
+        </div>
 
-            <div class="featured-project__body">
-                <section class="featured-project__section">
-                    <h3>Problem</h3>
-                    <p>
-                        Many underserved communities cannot rely on stable internet access or consistent power,
-                        making conventional online learning platforms ineffective.
-                    </p>
-                </section>
+        <div class="work-grid">
 
-                <section class="featured-project__section">
-                    <h3>Engineering Approach</h3>
-                    <p>
-                        Designed as an offline-first system with accessibility as a core constraint.
-                        Emphasis was placed on local content storage, low power usage, and simple interaction flows.
-                    </p>
-                </section>
-
-                <section class="featured-project__section">
-                    <h3>Technical Decisions</h3>
-                    <ul>
-                        <li>Local content storage using lightweight databases</li>
-                        <li>Linux-based environment for stability and control</li>
-                        <li>Offline access with periodic manual updates</li>
-                        <li>Hardware-aware, low-power system design</li>
+            <!--
+                Media slot: each card carries a typographic plate until a real
+                screenshot exists. To use one, replace the .work__plate div with
+                an img tag pointing at assets/images/work/ (alt, width, height, loading="lazy")
+                and nothing else needs to change.
+            -->
+            <article class="work work--featured" data-reveal>
+                <div class="work__media">
+                    <div class="work__plate" aria-hidden="true"><span>LP</span></div>
+                </div>
+                <div class="work__body">
+                    <span class="work__badge" data-i18n="work.featured">Featured</span>
+                    <h2 class="work__title">LearnPod</h2>
+                    <p class="work__tagline" data-i18n="w1.tagline">Offline-first learning for low-connectivity classrooms</p>
+                    <p class="work__desc" data-i18n="w1.desc">Many underserved communities cannot rely on stable internet or consistent power, which makes conventional online learning platforms ineffective. LearnPod is designed offline-first, with accessibility as a hard constraint rather than a later pass.</p>
+                    <ul class="work__list">
+                        <li data-i18n="w1.b1">Local content storage on a lightweight database</li>
+                        <li data-i18n="w1.b2">Linux-based environment for stability and control</li>
+                        <li data-i18n="w1.b3">Offline access with periodic manual updates</li>
+                        <li data-i18n="w1.b4">Hardware-aware, low-power system design</li>
                     </ul>
-                </section>
-
-                <div class="featured-project__tech">
-                    <span class="tech-badge">Python</span>
-                    <span class="tech-badge">Raspberry Pi</span>
-                    <span class="tech-badge">Linux</span>
-                    <span class="tech-badge">Offline-first Design</span>
-                </div>
-            </div>
-        </article>
-
-        <!-- Other Projects -->
-        <div class="projects-list">
-
-            <article class="project-item">
-                <h3 class="project-item__title">Campus Intranet System</h3>
-                <p class="project-item__description">
-                    Designed and configured a Linux-based intranet environment supporting internal services,
-                    secure access, and system communication.
-                </p>
-                <div class="project-item__tech">
-                    <span class="tech-badge">Linux</span>
-                    <span class="tech-badge">SSH</span>
-                    <span class="tech-badge">Networking</span>
-                    <span class="tech-badge">System Configuration</span>
-                </div>
-                <a href="https://github.com/lisette-lachiever/alche-system_engineering-devops"
-                   class="project-item__link" target="_blank" rel="noopener">
-                    View on GitHub →
-                </a>
-            </article>
-
-            <article class="project-item">
-                <h3 class="project-item__title">Task Management Web Application</h3>
-                <p class="project-item__description">
-                    Interactive task management application with filtering, task-state separation,
-                    and date handling, built with vanilla JavaScript.
-                </p>
-                <div class="project-item__tech">
-                    <span class="tech-badge">HTML</span>
-                    <span class="tech-badge">CSS</span>
-                    <span class="tech-badge">JavaScript</span>
+                    <div class="tags">
+                        <span class="tag">Python</span>
+                        <span class="tag">Raspberry Pi</span>
+                        <span class="tag">Linux</span>
+                        <span class="tag">Offline-first</span>
+                    </div>
                 </div>
             </article>
 
-            <article class="project-item">
-                <h3 class="project-item__title">Mission-Driven Website (Education & Technology)</h3>
-                <p class="project-item__description">
-                    Designed and built a multi-page website aligned with the Education & Technology global challenge, communicating a clear mission, vision, and projected impact. 
-                    The platform includes structured mission pages, an interactive contact form, and a testimonials feature to reflect user feedback and real-world relevance.
-                </p>
-                <div class="project-item__tech">
-                    <span class="tech-badge">HTML</span>
-                    <span class="tech-badge">CSS</span>
-                    <span class="tech-badge">JavaScript</span>
-                    <span class="tech-badge">UI Architecture</span>
+            <article class="work" data-reveal>
+                <div class="work__media">
+                    <img src="assets/images/work/urbex.jpg" alt="URBEX dashboard showing trip totals, vendor breakdown and distribution charts" width="604" height="378" loading="lazy" decoding="async">
                 </div>
-                <a href="https://mukiza123.github.io/"
-                   class="project-item__link" target="_blank" rel="noopener">
-                    View Project →
-                </a>
+                <div class="work__body">
+                    <h2 class="work__title">URBEX NYC Taxi Dashboard</h2>
+                    <p class="work__tagline" data-i18n="w2.tagline">1.4M+ NYC taxi records turned into a live dashboard</p>
+                    <p class="work__desc" data-i18n="w2.desc">A full-stack analytics dashboard with a pipeline that cleans, sorts and loads raw records into MySQL. Distance and sorting algorithms are written from scratch rather than pulled from a library, and Flask REST endpoints feed the charts and maps.</p>
+                    <div class="tags">
+                        <span class="tag">Python</span>
+                        <span class="tag">Flask</span>
+                        <span class="tag">MySQL</span>
+                        <span class="tag">Chart.js</span>
+                        <span class="tag">Leaflet</span>
+                    </div>
+                </div>
+                    <div class="work__links">
+                        <a class="work__link" href="https://github.com/lisette-lachiever/URBEX" target="_blank" rel="noopener noreferrer">
+                            <span data-i18n="work.code">View code</span>
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-arrow-out"/></svg>
+                        </a>
+                    </div>
             </article>
 
-            <article class="project-item">
-                <h3 class="project-item__title">Terminal-Based School Grading System</h3>
-                <p class="project-item__description">
-                    Command-line grading system with relational database support, automated grade
-                    calculation, and persistent storage using SQL.
-                </p>
-                <div class="project-item__tech">
-                    <span class="tech-badge">Python</span>
-                    <span class="tech-badge">SQLite</span>
-                    <span class="tech-badge">SQL</span>
-                    <span class="tech-badge">CLI Applications</span>
-                    <span class="tech-badge">VS Code</span>
+            <article class="work" data-reveal>
+                <div class="work__media">
+                    <img src="assets/images/work/momo.jpg" alt="Architecture diagram of the MoMo analytics system" width="515" height="322" loading="lazy" decoding="async">
                 </div>
-                <a href="https://github.com/pchukwuka/Grading_System"
-                   class="project-item__link" target="_blank" rel="noopener">
-                    View Project →
-                </a>
+                <div class="work__body">
+                    <span class="work__badge" data-i18n="work.inprogress">In progress</span>
+                    <h2 class="work__title">MoMo Transaction Analytics</h2>
+                    <p class="work__tagline" data-i18n="w3.tagline">Mobile money SMS parsed into financial insight</p>
+                    <p class="work__desc" data-i18n="w3.desc">A backend that parses mobile money SMS and XML exports into structured transactions, categorising and grouping them by type. Built on a MySQL schema with authenticated REST endpoints, and a dashboard that visualises spending trends.</p>
+                    <div class="tags">
+                        <span class="tag">Python</span>
+                        <span class="tag">MySQL</span>
+                        <span class="tag">REST APIs</span>
+                        <span class="tag">XML</span>
+                    </div>
+                    <div class="work__links">
+                        <a class="work__link" href="https://github.com/AR-JUNA/momo-transaction-tracker" target="_blank" rel="noopener noreferrer">
+                            <span data-i18n="work.code">View code</span>
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-arrow-out"/></svg>
+                        </a>
+                    </div>
+                </div>
             </article>
 
-            <article class="project-item">
-                <h3 class="project-item__title">BSE Specialisation Finder</h3>
-                <p class="project-item__description">
-                    Decision-support web application guiding Software Engineering students
-                    toward suitable specialisations using structured logic and interactive UI.
-                </p>
-                <div class="project-item__tech">
-                    <span class="tech-badge">HTML</span>
-                    <span class="tech-badge">CSS</span>
-                    <span class="tech-badge">JavaScript</span>
+            <article class="work" data-reveal>
+                <div class="work__media">
+                    <div class="work__plate" aria-hidden="true"><span>KC</span></div>
                 </div>
-                <a href="https://lisette-lachiever.github.io/bse-specialisation-advisor/"
-                   class="project-item__link" target="_blank" rel="noopener">
-                    View Project →
-                </a>
+                <div class="work__body">
+                    <h2 class="work__title">KCBlendz E-Commerce</h2>
+                    <p class="work__tagline" data-i18n="w4.tagline">Full-stack storefront for a beauty business</p>
+                    <p class="work__desc" data-i18n="w4.desc">Built with Python and Flask, version-controlled throughout. The SQLite schema models products, users and orders; on top of it sit secure authentication, a product catalog, a shopping cart, and the order workflow end to end.</p>
+                    <div class="tags">
+                        <span class="tag">Python</span>
+                        <span class="tag">Flask</span>
+                        <span class="tag">SQLite</span>
+                        <span class="tag">Jinja2</span>
+                        <span class="tag">JavaScript</span>
+                    </div>
+                </div>
+                    <div class="work__links">
+                        <a class="work__link" href="https://github.com/banituze/kcblendz" target="_blank" rel="noopener noreferrer">
+                            <span data-i18n="work.code">View code</span>
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-arrow-out"/></svg>
+                        </a>
+                    </div>
+            </article>
+
+            <article class="work" data-reveal>
+                <div class="work__media">
+                    <div class="work__plate" aria-hidden="true"><span>DA</span></div>
+                </div>
+                <div class="work__body">
+                    <h2 class="work__title">DASA Africa Platform</h2>
+                    <p class="work__tagline" data-i18n="w5.tagline">The digital presence behind an education startup</p>
+                    <p class="work__desc" data-i18n="w5.desc">Built and deployed the official DASA Africa website ahead of its pilot launch, then carried on leading the technology systems that support its learning programmes.</p>
+                    <div class="tags">
+                        <span class="tag">Python</span>
+                        <span class="tag">Django</span>
+                        <span class="tag">Docker</span>
+                        <span class="tag">Deployment</span>
+                    </div>
+                    <div class="work__links">
+                        <a class="work__link" href="https://github.com/dasaafrica/dasa" target="_blank" rel="noopener noreferrer">
+                            <span data-i18n="work.code">View code</span>
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-arrow-out"/></svg>
+                        </a>
+                    </div>
+                </div>
+            </article>
+
+            <article class="work" data-reveal>
+                <div class="work__media">
+                    <div class="work__plate" aria-hidden="true"><span>CI</span></div>
+                </div>
+                <div class="work__body">
+                    <h2 class="work__title">Campus Intranet System</h2>
+                    <p class="work__tagline" data-i18n="w6.tagline">Linux-based internal network services</p>
+                    <p class="work__desc" data-i18n="w6.desc">Designed and configured a Linux intranet environment supporting internal services, secure access and system communication.</p>
+                    <div class="tags">
+                        <span class="tag">Linux</span>
+                        <span class="tag">SSH</span>
+                        <span class="tag">Networking</span>
+                    </div>
+                    <div class="work__links">
+                        <a class="work__link" href="https://github.com/lisette-lachiever/alche-system_engineering-devops" target="_blank" rel="noopener noreferrer">
+                            <span data-i18n="work.code">View code</span>
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-arrow-out"/></svg>
+                        </a>
+                    </div>
+                </div>
+            </article>
+
+            <article class="work" data-reveal>
+                <div class="work__media">
+                    <div class="work__plate" aria-hidden="true"><span>TG</span></div>
+                </div>
+                <div class="work__body">
+                    <h2 class="work__title">Terminal Grading System</h2>
+                    <p class="work__tagline" data-i18n="w7.tagline">Command-line grading with persistent storage</p>
+                    <p class="work__desc" data-i18n="w7.desc">A CLI grading system backed by a relational database, with automated grade calculation and persistent storage in SQL.</p>
+                    <div class="tags">
+                        <span class="tag">Python</span>
+                        <span class="tag">SQLite</span>
+                        <span class="tag">SQL</span>
+                        <span class="tag">CLI</span>
+                    </div>
+                    <div class="work__links">
+                        <a class="work__link" href="https://github.com/pchukwuka/Grading_System" target="_blank" rel="noopener noreferrer">
+                            <span data-i18n="work.code">View code</span>
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-arrow-out"/></svg>
+                        </a>
+                    </div>
+                </div>
+            </article>
+
+            <article class="work" data-reveal>
+                <div class="work__media">
+                    <img src="assets/images/work/bse-specfinder.jpg" alt="SpecFinder landing page listing software engineering specialisation paths" width="1000" height="625" loading="lazy" decoding="async">
+                </div>
+                <div class="work__body">
+                    <h2 class="work__title">BSE Specialisation Finder</h2>
+                    <p class="work__tagline" data-i18n="w8.tagline">Decision support for choosing a specialisation</p>
+                    <p class="work__desc" data-i18n="w8.desc">A web application that guides Software Engineering students toward a specialisation using structured logic and an interactive interface.</p>
+                    <div class="tags">
+                        <span class="tag">HTML</span>
+                        <span class="tag">CSS</span>
+                        <span class="tag">JavaScript</span>
+                    </div>
+                    <div class="work__links">
+                        <a class="work__link" href="https://lisette-lachiever.github.io/bse-specialisation-advisor/" target="_blank" rel="noopener noreferrer">
+                            <span data-i18n="work.live">Live site</span>
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-arrow-out"/></svg>
+                        </a>
+                    </div>
+                </div>
+            </article>
+
+            <article class="work" data-reveal>
+                <div class="work__media">
+                    <img src="assets/images/work/opinfinia.jpg" alt="OPINFINIA site hero introducing Lisette Mukiza" width="1000" height="625" loading="lazy" decoding="async">
+                </div>
+                <div class="work__body">
+                    <h2 class="work__title">Mission-Driven Website</h2>
+                    <p class="work__tagline" data-i18n="w9.tagline">Education and technology, as a global challenge brief</p>
+                    <p class="work__desc" data-i18n="w9.desc">A multi-page site communicating a mission, vision and projected impact, with structured mission pages, an interactive contact form and a testimonials feature.</p>
+                    <div class="tags">
+                        <span class="tag">HTML</span>
+                        <span class="tag">CSS</span>
+                        <span class="tag">JavaScript</span>
+                    </div>
+                    <div class="work__links">
+                        <a class="work__link" href="https://mukiza123.github.io/" target="_blank" rel="noopener noreferrer">
+                            <span data-i18n="work.live">Live site</span>
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-arrow-out"/></svg>
+                        </a>
+                    </div>
+                </div>
+            </article>
+
+            <article class="work" data-reveal>
+                <div class="work__media">
+                    <img src="assets/images/work/task-manager.jpg" alt="Task Manager interface with filters and a dated task list" width="1000" height="625" loading="lazy" decoding="async">
+                </div>
+                <div class="work__body">
+                    <h2 class="work__title">Task Management App</h2>
+                    <p class="work__tagline" data-i18n="w10.tagline">Filtering, task state and date handling in vanilla JS</p>
+                    <p class="work__desc" data-i18n="w10.desc">An interactive task manager with filtering, separation of task states and date handling, built without a framework.</p>
+                    <div class="tags">
+                        <span class="tag">HTML</span>
+                        <span class="tag">CSS</span>
+                        <span class="tag">JavaScript</span>
+                    </div>
+                </div>
+                    <div class="work__links">
+                        <a class="work__link" href="https://lisette-task-manager.netlify.app/" target="_blank" rel="noopener noreferrer">
+                            <span data-i18n="work.live">Live site</span>
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-arrow-out"/></svg>
+                        </a>
+                    </div>
             </article>
 
         </div>
@@ -196,21 +336,32 @@
 
 <footer class="footer">
     <div class="footer__container">
-        <svg width="64" height="32" viewBox="-32 -16 64 32" xmlns="http://www.w3.org/2000/svg">
-            <path
-                d="M -24 0 C -24 -10 -8 -10 0 0 C 8 10 24 10 24 0 C 24 -10 8 -10 0 0 C -8 10 -24 10 -24 0"
-                fill="none"
-                stroke="#0d6346"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-            />
-        </svg>
-        <p class="footer__text">Building systems that scale and serve.</p>
+        <span class="footer__word">Lisette Mukiza</span>
+
+        <ul class="footer__social">
+            <li>
+                <a href="https://github.com/lisette-lachiever" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><use href="#i-github"/></svg>
+                </a>
+            </li>
+            <li>
+                <a href="https://linkedin.com/in/lisette-mukiza" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><use href="#i-linkedin"/></svg>
+                </a>
+            </li>
+            <li>
+                <a href="mailto:mukizalisette@gmail.com" aria-label="Email">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" aria-hidden="true"><use href="#i-mail"/></svg>
+                </a>
+            </li>
+        </ul>
+
+        <p class="footer__note" data-i18n="footer.note">Built from scratch. No template.</p>
     </div>
 </footer>
 
-<script src="scripts/main.js"></script>
+<script src="scripts/i18n.js"></script>
 <script src="scripts/theme-toggle.js"></script>
+<script src="scripts/main.js"></script>
 </body>
 </html>
